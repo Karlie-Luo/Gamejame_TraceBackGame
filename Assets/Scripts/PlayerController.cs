@@ -73,7 +73,7 @@ namespace TarodevController {
             {
                 Time.timeScale = 0;
                 timestopsphere.gameObject.SetActive(true);
-                timestopsphere.gameObject.transform.position = this.gameObject.transform.position;
+                timestopsphere.gameObject.transform.position = this.gameObject.transform.position+new Vector3(0,0,3);
                 //Invoke("SphereDestory", 1f);
                 isTimeStopStart = true;
             }

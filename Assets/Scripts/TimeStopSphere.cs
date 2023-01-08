@@ -7,7 +7,7 @@ public class TimeStopSphere : MonoBehaviour
     public float growspeed = 1f;
     private void Update()
     {
-        this.gameObject.transform.localScale += new Vector3(growspeed * Time.unscaledDeltaTime, growspeed * Time.unscaledDeltaTime, growspeed * Time.unscaledDeltaTime);
+        this.gameObject.transform.localScale += new Vector3(growspeed * Time.unscaledDeltaTime, growspeed * Time.unscaledDeltaTime, 0);
     }
 
     private void OnDisable()
