@@ -96,7 +96,7 @@ public class Turtle : MonoBehaviour
             Destroy(GetComponent<Rigidbody2D>());
             Destroy(gameObject,0.5f);
         }
-        if(collision.gameObject.tag != "Finish") //µØ°å
+        if(collision.gameObject.tag != "Ground") //µØ°å
         {
             dir *= -1;
             if(transform.localRotation == quaternion)
