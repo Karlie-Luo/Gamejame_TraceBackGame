@@ -24,6 +24,12 @@ namespace TarodevController {
 
         // This is horrible, but for some reason colliders are not fully established when update starts...
         private bool _active;
+
+        public GameObject timestopsphere;
+
+        float time = 0;
+
+        bool isTimeStopStart = false;
         void Awake() => Invoke(nameof(Activate), 0.5f);
         void Activate() =>  _active = true;
         
@@ -33,17 +39,48 @@ namespace TarodevController {
             Velocity = (transform.position - _lastPosition) / Time.deltaTime;
             _lastPosition = transform.position;
 
-            GatherInput();
-            RunCollisionChecks();
+            if(!isTimeStopStart)
+            {
+                GatherInput();
+                RunCollisionChecks();
+                CalculateWalk(); // Horizontal movement
+                CalculateJumpApex(); // Affects fall speed, so calculate before gravity
+                CalculateGravity(); // Vertical movement
+                CalculateJump(); // Possibly overrides vertical
+                MoveCharacter(); // Actually perform the axis movement
+                TimeStopChecks();
+            }
+            if (isTimeStopStart)
+            {
+                Debug.Log("Ê±Í£¿ªÊ¼");
+                time += Time.unscaledDeltaTime;
+                if (time >= 2.0f)
+                {
 
-            CalculateWalk(); // Horizontal movement
-            CalculateJumpApex(); // Affects fall speed, so calculate before gravity
-            CalculateGravity(); // Vertical movement
-            CalculateJump(); // Possibly overrides vertical
-
-            MoveCharacter(); // Actually perform the axis movement
+                    Time.timeScale = 1;
+                    Debug.Log(Time.timeScale);
+                    timestopsphere.SetActive(false);
+                    isTimeStopStart = false;
+                    time = 0;
+                }
+            }
         }
 
+        #region TimeStop
+        private void TimeStopChecks()
+        {
+            if (UnityEngine.Input.GetKeyDown(KeyCode.K))
+            {
+                Time.timeScale = 0;
+                timestopsphere.gameObject.SetActive(true);
+                timestopsphere.gameObject.transform.position = this.gameObject.transform.position;
+                //Invoke("SphereDestory", 1f);
+                isTimeStopStart = true;
+            }
+        }
+
+
+        #endregion
 
         #region Gather Input
 
@@ -142,7 +179,6 @@ namespace TarodevController {
         }
 
         #endregion
-
 
         #region Walk
 
