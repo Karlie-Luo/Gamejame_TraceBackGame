@@ -63,8 +63,12 @@ public class Turtle : MonoBehaviour
     {
         bool hasSpikes = false;
         float distance = Mathf.Abs(GameObject.Find("Player").transform.position.x - transform.position.x);
-
-        if (distance < 1.0f)
+        bool isSameHeight = false;
+        if(Mathf.Abs(GameObject.Find("Player").transform.position.y - transform.position.y) <= 0.5f)
+        {
+            isSameHeight = true;
+        }
+        if (distance < 2.0f && isSameHeight)
         {
             animator.SetBool("findPlayer", true);
             spikesOutCollider.enabled = true;
@@ -72,7 +76,7 @@ public class Turtle : MonoBehaviour
             findPlayer = true;
 
         }
-        if(distance >= 1.0f)
+        if(distance >= 2.0f || !isSameHeight)
         {
             animator.SetBool("findPlayer", false);
             if(hasSpikes)
@@ -87,16 +91,10 @@ public class Turtle : MonoBehaviour
     {
         Quaternion quaternion = Quaternion.Euler(0, 0, 0);
         if (collision.gameObject.tag == "Player")
-        {          
-            animator.SetTrigger("die");
-            transform.position = new Vector2(transform.position.x, transform.position.y - 0.05f);
-            isDie = true;
-            Destroy(GetComponent<BoxCollider2D>());
-            Destroy(spikesOutCollider);
-            Destroy(GetComponent<Rigidbody2D>());
-            Destroy(gameObject,0.5f);
+        {
+            EnemyDie();
         }
-        if(collision.gameObject.tag != "Ground") //µØ°å
+        if(collision.gameObject.tag != "Ground" && collision.gameObject.tag != "Player") //µØ°å
         {
             dir *= -1;
             if(transform.localRotation == quaternion)
@@ -108,5 +106,16 @@ public class Turtle : MonoBehaviour
                 transform.localRotation = Quaternion.Euler(0, 0, 0);
             }
         }
+    }
+
+    private void EnemyDie()
+    {
+        animator.SetTrigger("die");
+        transform.position = new Vector2(transform.position.x, transform.position.y - 0.05f);
+        isDie = true;
+        Destroy(GetComponent<BoxCollider2D>());
+        Destroy(spikesOutCollider);
+        Destroy(GetComponent<Rigidbody2D>());
+        Destroy(gameObject, 0.5f);
     }
 }
