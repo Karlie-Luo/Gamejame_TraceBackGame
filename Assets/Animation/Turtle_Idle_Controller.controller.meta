@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Animation/Enemy/Turtle/Turtle.controller.meta
+guid: cd770b67c6ef47e4da97c7ee1f6df804
+========
 guid: 34fbae79ccce28b4e8e818dd8a7406c8
+>>>>>>>> dev:Assets/Animation/Turtle_Idle_Controller.controller.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 9100000

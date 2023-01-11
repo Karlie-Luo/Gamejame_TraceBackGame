@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Animation/Enemy/Turtle/Turtle.controller.meta
+guid: 37111443b2b2c3c4c9bbce06e2d5f9d3
+========
+guid: 34fbae79ccce28b4e8e818dd8a7406c8
+>>>>>>>> dev:Assets/Animation/Turtle_Idle_Controller.controller.meta
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
