@@ -12,6 +12,8 @@ public class Bee : MonoBehaviour
     public GameObject bullet;
     private float startTime;
     private int shootIndex = 0;
+    public float shootInterval;
+    public float alertDistance;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,7 +39,7 @@ public class Bee : MonoBehaviour
     private void EnemyMove()
     {
         float distance = Mathf.Abs(GameObject.Find("Player").transform.position.x - transform.position.x);
-        if(distance < 1f)
+        if(distance < alertDistance)
         {
             if (GameObject.Find("Player").transform.position.x > transform.position.x)
             {
@@ -50,7 +52,7 @@ public class Bee : MonoBehaviour
         }
         if(distance < 0.2f)
         {
-            if (Time.time - startTime > 5.0f)
+            if (Time.time - startTime > shootInterval)
             {
                 shootFlag = true;
                 startTime = Time.time;

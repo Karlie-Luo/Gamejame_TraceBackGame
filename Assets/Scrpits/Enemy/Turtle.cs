@@ -10,6 +10,8 @@ public class Turtle : MonoBehaviour
     private bool isDie = false;
     private PolygonCollider2D spikesOutCollider;
     private bool findPlayer = false;
+    public float alertDistance;
+    public float patrolDistance;
     void Start()
     {
         spikesOutCollider = GetComponent<PolygonCollider2D>();
@@ -32,12 +34,12 @@ public class Turtle : MonoBehaviour
     {
         if(findPlayer == false)
         {           
-            if (transform.position.x > startPosX + 2.0f)
+            if (transform.position.x > startPosX + patrolDistance)
             {
                 dir = dir * -1;
                 transform.localRotation = Quaternion.Euler(0, 0, 0);
             }
-            if (transform.position.x < startPosX - 2.0f)
+            if (transform.position.x < startPosX - patrolDistance)
             {
                 dir = dir * -1;
                 transform.localRotation = Quaternion.Euler(0, 180, 0);
@@ -68,7 +70,7 @@ public class Turtle : MonoBehaviour
         {
             isSameHeight = true;
         }
-        if (distance < 2.0f && isSameHeight)
+        if (distance < alertDistance && isSameHeight)
         {
             animator.SetBool("findPlayer", true);
             spikesOutCollider.enabled = true;
@@ -76,7 +78,7 @@ public class Turtle : MonoBehaviour
             findPlayer = true;
 
         }
-        if(distance >= 2.0f || !isSameHeight)
+        if(distance >= alertDistance || !isSameHeight)
         {
             animator.SetBool("findPlayer", false);
             if(hasSpikes)

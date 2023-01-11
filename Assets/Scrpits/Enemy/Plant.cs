@@ -1,0 +1,67 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Plant : MonoBehaviour
+{
+    public GameObject bullet;
+    private bool isDie = false;
+    private Animator animator;
+    private float startTime;
+    public bool left;
+    public float shootInterval;
+    public float alertDistance;
+    // Start is called before the first frame update
+    void Start()
+    {
+        animator = GetComponent<Animator>();
+        startTime = Time.time;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if(isDie)
+        {
+            return;
+        }
+        FindPlayer();
+    }
+
+    private void FindPlayer()
+    {
+        float distance = Mathf.Abs(GameObject.Find("Player").transform.position.x - transform.position.x);
+        bool isSameHeight = false;
+        if (Mathf.Abs(GameObject.Find("Player").transform.position.y - transform.position.y) <= 0.5f)
+        {
+            isSameHeight = true;
+        }
+        if(distance < alertDistance && isSameHeight)
+        {            
+            if (Time.time - startTime > shootInterval)
+            {
+                animator.SetBool("Attack", true);
+                Invoke("Fire", 0.3f);
+                startTime = Time.time;
+            }
+        }
+        if (distance >= alertDistance || !isSameHeight)
+        {
+            animator.SetBool("Attack", false);
+        }
+    }
+
+    private void Fire()
+    {
+        float shiftPos = 0.5f;
+        float shiftAngle = 0;
+        if(left)
+        {
+            shiftPos = - 0.5f;
+            shiftAngle = 180;
+        }
+        Vector2 bulletPosition = new Vector2(transform.position.x + shiftPos, transform.position.y + 0.4f);
+        Instantiate(bullet, bulletPosition, Quaternion.Euler(0, 0, shiftAngle));
+    }
+
+}
