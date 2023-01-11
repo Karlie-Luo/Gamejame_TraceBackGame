@@ -18,6 +18,8 @@ public class PlayerMove : MonoBehaviour
     bool jumpPressed;
     public int jumpCount;
 
+    bool dragPressed = false;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -31,8 +33,8 @@ public class PlayerMove : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space)&&jumpCount>0)
         {
             jumpPressed = true;
-            Debug.Log("aaa");
         }
+       
     }
 
     private void FixedUpdate()
@@ -65,7 +67,6 @@ public class PlayerMove : MonoBehaviour
         }
         if (isGround && jumpPressed)
         {
-            Debug.Log("ttt");
             isJump = true;
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             jumpCount--;
@@ -78,4 +79,6 @@ public class PlayerMove : MonoBehaviour
             jumpPressed = false;
         }
     }
+
+
 }
