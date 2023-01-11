@@ -16,9 +16,14 @@ public class PlayerMove : MonoBehaviour
     public bool isGround, isJump;
      
     bool jumpPressed;
+    bool jumpContinue;
     public int jumpCount;
 
+    public float jumpDownForce;
+
     bool dragPressed = false;
+
+    float time;
 
     void Start()
     {
@@ -33,7 +38,17 @@ public class PlayerMove : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space)&&jumpCount>0)
         {
             jumpPressed = true;
+            jumpContinue = true;
+            time = Time.time;
+            Debug.Log("aaaaaa");
         }
+
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            jumpContinue = false;
+        }
+        
+    
        
     }
 
@@ -42,6 +57,14 @@ public class PlayerMove : MonoBehaviour
         isGround = Physics2D.OverlapCircle(groundCheck.position, 0.1f, ground);
         GroundMove();
         Jump();
+        if (rb.velocity.y < 0||(rb.velocity.y>0&&rb.velocity.y<10))
+        {
+            rb.AddForce(-Vector2.up*jumpDownForce);
+        }
+        if (jumpContinue&&(Time.time-time)<2)
+        {
+            rb.AddForce(new Vector2(0, 40*(2-Time.time+time)));
+        }
     }
 
     void GroundMove()
@@ -72,6 +95,8 @@ public class PlayerMove : MonoBehaviour
             jumpCount--;
             jumpPressed = false;
         }
+        //else if(!isGround&&jumpPressed)
+        //{ }
         else if (jumpPressed && jumpCount > 0 && isJump)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
