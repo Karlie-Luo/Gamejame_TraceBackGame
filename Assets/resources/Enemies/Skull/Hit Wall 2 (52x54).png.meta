@@ -1,7 +1,28 @@
 fileFormatVersion: 2
 guid: 0f19aac2d3dff734b864edaeb8ecb70a
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 2053894622648911956
+    second: Hit Wall 2 (52x54)_0
+  - first:
+      213: 5770725570484186487
+    second: Hit Wall 2 (52x54)_1
+  - first:
+      213: 4283841772819548759
+    second: Hit Wall 2 (52x54)_2
+  - first:
+      213: 7871542433951501476
+    second: Hit Wall 2 (52x54)_3
+  - first:
+      213: -7385279612560576816
+    second: Hit Wall 2 (52x54)_4
+  - first:
+      213: -4483337734888743808
+    second: Hit Wall 2 (52x54)_5
+  - first:
+      213: -2027179826355469474
+    second: Hit Wall 2 (52x54)_6
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -41,7 +62,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -75,9 +96,168 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Hit Wall 2 (52x54)_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1
+        width: 52
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 458c21df646e08c10800000000000000
+      internalID: 2053894622648911956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hit Wall 2 (52x54)_1
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 4
+        width: 46
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77d29fce45cb51050800000000000000
+      internalID: 5770725570484186487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hit Wall 2 (52x54)_2
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 7
+        width: 44
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75a83e64563437b30800000000000000
+      internalID: 4283841772819548759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hit Wall 2 (52x54)_3
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 11
+        width: 42
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4acc71273265d3d60800000000000000
+      internalID: 7871542433951501476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hit Wall 2 (52x54)_4
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 12
+        width: 36
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0de646e3257328990800000000000000
+      internalID: -7385279612560576816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hit Wall 2 (52x54)_5
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 12
+        width: 36
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08c1ad7751cf7c1c0800000000000000
+      internalID: -4483337734888743808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hit Wall 2 (52x54)_6
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 14
+        width: 38
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e538e3a30b20ed3e0800000000000000
+      internalID: -2027179826355469474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
