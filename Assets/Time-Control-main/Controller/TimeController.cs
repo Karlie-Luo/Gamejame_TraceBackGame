@@ -75,10 +75,10 @@ public class TimeController : MonoBehaviour
     /// <summary>
     /// 控制器状态变更事件（适用于多人游戏状态同步）
     /// </summary>
-    public event Action<TimeState>OnStateChangeEvent;
+    public event Action<TimeState> OnStateChangeEvent;
 
     [LabelText("固定更新"),SerializeField]
-    private bool useFixedUpdate=true;
+    private bool useFixedUpdate = true;
     /// <summary>
     /// 使用物理更新FixedUpdateMode
     /// </summary>
@@ -133,10 +133,10 @@ public class TimeController : MonoBehaviour
         timer=recordStep;
         UpdateState(TimeState.记录);
         OnRecordStartEvent?.Invoke();
-            foreach(var store in stores)
-            {
-                store.Record();
-            }
+        foreach(var store in stores)
+        {
+            store.Record();
+        }
        
     }
     /// <summary>
@@ -148,10 +148,10 @@ public class TimeController : MonoBehaviour
         timer=0;
         UpdateState(TimeState.回溯);
         OnRecallStartEvent?.Invoke();     
-            foreach(var store in stores)
-            {
-                store.Recall();
-            }
+        foreach(var store in stores)
+        {
+            store.Recall();
+        }
         recallCount=currentCount;
     }
     /// <summary>
