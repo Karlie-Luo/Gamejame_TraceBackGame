@@ -5,9 +5,22 @@ using UnityEngine;
 public class TimeStopSphere : MonoBehaviour
 {
     public float growspeed = 1f;
+    public float totalTime;
+    private float time = 0;
     private void Update()
     {
-        this.gameObject.transform.localScale += new Vector3(growspeed * Time.unscaledDeltaTime, growspeed * Time.unscaledDeltaTime, 0);
+        Debug.Log(time);
+        if (time < 1)
+        {
+            Debug.Log("bbbbbbbbb");
+            this.gameObject.transform.localScale += new Vector3(growspeed * Time.unscaledDeltaTime, growspeed * Time.unscaledDeltaTime, 0);
+        }
+        else if (time >= 1)
+        {
+            Debug.Log("aaaaaaaa");
+            this.gameObject.transform.localScale -= new Vector3(growspeed * Time.unscaledDeltaTime, growspeed * Time.unscaledDeltaTime, 0);
+        }
+        time += Time.unscaledDeltaTime;
     }
 
     private void OnDisable()
