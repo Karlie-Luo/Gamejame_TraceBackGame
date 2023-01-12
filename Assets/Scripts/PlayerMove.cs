@@ -22,9 +22,12 @@ public class PlayerMove : MonoBehaviour
     public float jumpDownForce;
 
     bool dragPressed = false;
+    bool isTimeStopStart = false;
 
     float time;
+    float timeStopTime;
 
+    public GameObject timestopsphere;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -35,38 +38,67 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)&&jumpCount>0)
+        if (!isTimeStopStart)
         {
-            jumpPressed = true;
-            jumpContinue = true;
-            time = Time.time;
-            Debug.Log("aaaaaa");
-        }
+            if (Input.GetKeyDown(KeyCode.Space) && jumpCount > 0)
+            {
+                jumpPressed = true;
+                jumpContinue = true;
+                time = Time.time;
+                Debug.Log("aaaaaa");
+            }
 
-        if (Input.GetKeyUp(KeyCode.Space))
-        {
-            jumpContinue = false;
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                jumpContinue = false;
+            }
+            TimeStopChecks();
         }
-        
-    
-       
+        else 
+        {
+            Debug.Log("时停开始");
+            timeStopTime += Time.unscaledDeltaTime;
+            if (timeStopTime >= 2.0f)
+            {
+
+                Time.timeScale = 1;
+                Debug.Log(Time.timeScale);
+                timestopsphere.SetActive(false);
+                isTimeStopStart = false;
+                timeStopTime = 0;
+            }
+        }
     }
 
     private void FixedUpdate()
     {
-        isGround = Physics2D.OverlapCircle(groundCheck.position, 0.1f, ground);
-        GroundMove();
-        Jump();
-        if (rb.velocity.y < 0||(rb.velocity.y>0&&rb.velocity.y<10))
+        if (!isTimeStopStart)
         {
-            rb.AddForce(-Vector2.up*jumpDownForce);
-        }
-        if (jumpContinue&&(Time.time-time)<2)
-        {
-            rb.AddForce(new Vector2(0, 40*(2-Time.time+time)));
+            isGround = Physics2D.OverlapCircle(groundCheck.position, 0.01f, ground);
+            GroundMove();
+            Jump();
+            if (rb.velocity.y < 0 || (rb.velocity.y > 0 && rb.velocity.y < 10))
+            {
+                rb.AddForce(-Vector2.up * jumpDownForce);
+            }
+            if (jumpContinue && (Time.time - time) < 2)
+            {
+                rb.AddForce(new Vector2(0, 40 * (2 - Time.time + time)));
+            }
         }
     }
 
+    private void TimeStopChecks()
+    {
+        if (UnityEngine.Input.GetKeyDown(KeyCode.K))
+        {
+            Debug.Log("按下时停");
+            Time.timeScale = 0;
+            timestopsphere.gameObject.SetActive(true);
+            timestopsphere.gameObject.transform.position = this.gameObject.transform.position + new Vector3(0, 0, 3);
+            isTimeStopStart = true;
+        }
+    }
     void GroundMove()
     {
         float horizontalMove = Input.GetAxisRaw("Horizontal");
@@ -80,8 +112,8 @@ public class PlayerMove : MonoBehaviour
 
     void Jump()
     {
-        Debug.Log(isGround+"isGround");
-        Debug.Log(jumpPressed + "jumpPressed");
+        //Debug.Log(isGround+"isGround");
+        //Debug.Log(jumpPressed + "jumpPressed");
 
         if (isGround)
         {
