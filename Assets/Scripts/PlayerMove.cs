@@ -82,7 +82,7 @@ public class PlayerMove : MonoBehaviour
     {
         if (!isTimeStopStart)
         {
-            isGround = Physics2D.OverlapCircle(groundCheck.position, 0.01f, ground);
+            //isGround = Physics2D.OverlapCircle(groundCheck.position, 0.01f, ground);
             GroundMove();
             Jump();
             if (rb.velocity.y < 0 || (rb.velocity.y > 0 && rb.velocity.y < 10))
@@ -132,11 +132,28 @@ public class PlayerMove : MonoBehaviour
             jumpCount--;
             jumpPressed = false;
         }
-        else if (jumpPressed && jumpCount > 0 && isJump)
+        //else if (jumpPressed && jumpCount > 0 && isJump)
+        //{
+        //    rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        //    jumpCount--;
+        //    jumpPressed = false;
+        //}
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 6)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-            jumpCount--;
-            jumpPressed = false;
+            isGround = true;
+            Debug.Log("在地面上");
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 6)
+        {
+            isGround = false;
+            Debug.Log("起飞");
         }
     }
 }
