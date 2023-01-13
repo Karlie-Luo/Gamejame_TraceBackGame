@@ -538,6 +538,7 @@ GameObject:
   - component: {fileID: 975250143}
   - component: {fileID: 975250142}
   - component: {fileID: 975250146}
+  - component: {fileID: 975250147}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Untagged
@@ -557,6 +558,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 428e8df018def854ca6271bcdc30ecab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  alertDistance: 0
+  patrolDistance: 5
 --- !u!114 &975250143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -564,7 +567,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 975250141}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0aa311767776f60449abfc902f8a8a7c, type: 3}
   m_Name: 
@@ -651,3 +654,16 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &975250147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 975250141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 444c73ec70ab85748b881b1de45bf378, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  locked: 1

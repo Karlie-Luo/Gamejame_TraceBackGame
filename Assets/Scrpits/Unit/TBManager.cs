@@ -63,6 +63,24 @@ public class TBManager : MonoBehaviour
                 TBController.Instance.ChooseOne();
             }
         }
+        else if(Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            if (TBController.Instance.CurrentState == TBController.TBState.Record)
+            {
+                Debug.Log("fast recall");
+                TBController.Instance.ChangeRecallSpeed(true);
+                TBController.Instance.RecallAll();
+            }
+        }
+        else if(Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            if (TBController.Instance.CurrentState == TBController.TBState.Record)
+            {
+                Debug.Log("slow recall");
+                TBController.Instance.ChangeRecallSpeed(false);
+                TBController.Instance.RecallAll();
+            }
+        }
     }
 
     private void InitSequence()

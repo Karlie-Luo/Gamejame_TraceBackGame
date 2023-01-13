@@ -265,9 +265,21 @@ public class TBController : MonoBehaviour
                 }
         }
     }
-    void UpdateState(TBState newState)
+    private void UpdateState(TBState newState)
     {
         state = newState;
         OnStateChangeEvent?.Invoke(state);
+    }
+
+    public void ChangeRecallSpeed(bool speed)
+    {
+        if(speed)
+        {
+            recallStep = 1f;
+        }
+        else
+        {
+            recallStep = 0.01f;
+        }
     }
 }
