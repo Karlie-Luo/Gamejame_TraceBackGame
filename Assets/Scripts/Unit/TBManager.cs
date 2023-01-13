@@ -104,6 +104,12 @@ public class TBManager : MonoBehaviour
                 //Player.Instance.Flash(step);
             }
         }
+        else if(Input.GetKeyDown(KeyCode.Tab))
+        {
+            Player.Instance.Rebirth();
+            Player.Instance.transform.position = flashLight.transform.position;
+            Player.Instance.transform.rotation = flashLight.transform.rotation;
+        }
     }
     private void FixedUpdate()
     {

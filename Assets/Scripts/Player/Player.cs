@@ -28,6 +28,7 @@ public class Player : MonoBehaviour
     float time;
     float timeStopTime;
 
+    public GameObject sceneFadeInOut;
     public GameObject timestopsphere;
 
     public static Player instance;
@@ -169,4 +170,10 @@ public class Player : MonoBehaviour
         step.rotation = transform.rotation;
         return step;
     }
+
+    public void Rebirth()
+    {
+        Debug.Log("Rebirth");
+        sceneFadeInOut.GetComponentInChildren<SceneFadeInOut>().ReloadEffect();
+    } 
 }

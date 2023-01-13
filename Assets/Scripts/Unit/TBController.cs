@@ -299,6 +299,10 @@ public class TBController : MonoBehaviour
                         break;
                     }
                     currentCount -= 2;
+                    if(currentCount < 0)
+                    {
+                        currentCount = 0;
+                    }
                     OnStepChangeEvent?.Invoke((float)currentCount / Capacity);
                     OnRecallFastEvent?.Invoke();//未结束则调用回溯时刻
                     break;

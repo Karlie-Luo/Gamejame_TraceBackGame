@@ -11,6 +11,7 @@ public class SceneFadeInOut : MonoBehaviour
     public static bool sceneEnding = false;
     private RawImage rawImage;
     public static bool sceneReloading = false;
+    
     void Awake()
     {
         rawImage = GetComponent<RawImage>();
@@ -71,6 +72,12 @@ public class SceneFadeInOut : MonoBehaviour
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             }          
         }
+    }
+
+    public void ReloadEffect()
+    {
+        sceneEnding = true;
+        sceneReloading = true;
     }
     
 }
