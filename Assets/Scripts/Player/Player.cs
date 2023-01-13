@@ -69,7 +69,6 @@ public class Player : MonoBehaviour
             {
                 jumpContinue = false;
             }
-            TimeStopChecks();
         }
         else 
         {
@@ -105,16 +104,13 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void TimeStopChecks()
+    public void TimeStopChecks()
     {
-        if (UnityEngine.Input.GetKeyDown(KeyCode.K))
-        {
-            Debug.Log("按下时停");
-            Time.timeScale = 0;
-            timestopsphere.gameObject.SetActive(true);
-            timestopsphere.gameObject.transform.position = this.gameObject.transform.position + new Vector3(0, 0, 3);
-            isTimeStopStart = true;
-        }
+        Debug.Log("按下时停");
+        Time.timeScale = 0;
+        timestopsphere.gameObject.SetActive(true);
+        timestopsphere.gameObject.transform.position = this.gameObject.transform.position + new Vector3(0, 0, 3);
+        isTimeStopStart = true;
     }
     void GroundMove()
     {

@@ -8,7 +8,10 @@ public class BeginScene : MonoBehaviour
     {
         SceneManager.LoadScene("GameScene");
     }
-
+    public void onPeopleButtonClicked()
+    {
+        SceneManager.LoadScene("PeopleScene");
+    }
     public void onQuitButtonClicked()
     {
         Application.Quit();

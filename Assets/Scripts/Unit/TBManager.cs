@@ -61,6 +61,7 @@ public class TBManager : MonoBehaviour
             {
                 Debug.Log("normal to choose");
                 TBController.Instance.NormalToChoose();
+                Player.Instance.TimeStopChecks();
                 seq.Restart();
             }
             else if (TBController.Instance.CurrentState == TBController.TBState.Choose)
@@ -107,7 +108,7 @@ public class TBManager : MonoBehaviour
     private void FixedUpdate()
     {
         transformQueue.Enqueue(Player.Instance.GetTransfomStep());
-        if (counter <= 300)
+        if (counter <= 150)
         {
             counter++;
         }
