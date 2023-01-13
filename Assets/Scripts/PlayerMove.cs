@@ -112,9 +112,6 @@ public class PlayerMove : MonoBehaviour
 
     void Jump()
     {
-        //Debug.Log(isGround+"isGround");
-        //Debug.Log(jumpPressed + "jumpPressed");
-
         if (isGround)
         {
             jumpCount = 2;
@@ -127,8 +124,6 @@ public class PlayerMove : MonoBehaviour
             jumpCount--;
             jumpPressed = false;
         }
-        //else if(!isGround&&jumpPressed)
-        //{ }
         else if (jumpPressed && jumpCount > 0 && isJump)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
@@ -136,6 +131,4 @@ public class PlayerMove : MonoBehaviour
             jumpPressed = false;
         }
     }
-
-
 }

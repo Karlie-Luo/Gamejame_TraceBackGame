@@ -12,13 +12,15 @@ public class TimeStopSphere : MonoBehaviour
         Debug.Log(time);
         if (time < 1)
         {
-            Debug.Log("bbbbbbbbb");
             this.gameObject.transform.localScale += new Vector3(growspeed * Time.unscaledDeltaTime, growspeed * Time.unscaledDeltaTime, 0);
         }
         else if (time >= 1)
         {
-            Debug.Log("aaaaaaaa");
             this.gameObject.transform.localScale -= new Vector3(growspeed * Time.unscaledDeltaTime, growspeed * Time.unscaledDeltaTime, 0);
+        }
+        if (2-time<0.01)
+        {
+            time = 0;
         }
         time += Time.unscaledDeltaTime;
     }
@@ -33,6 +35,6 @@ public class TimeStopSphere : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("1");
+        
     }
 }

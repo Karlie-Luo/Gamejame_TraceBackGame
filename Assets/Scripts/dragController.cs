@@ -28,7 +28,7 @@ public class dragController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (dragObj != null)
+        if (dragObj != null&&dragPressed)
         {
             Debug.Log("hahaha");
             dragObj.transform.position = this.transform.position + new Vector3(distance, 0, 0);
@@ -55,12 +55,5 @@ public class dragController : MonoBehaviour
             }
         }
     }
-    //private void OnTriggerExit2D(Collider2D collision)
-    //{
-    //    if (collision.gameObject.transform == dragObj.transform)
-    //    {
-            
-    //    }
-    //}
 
 }
