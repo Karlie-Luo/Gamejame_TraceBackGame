@@ -10,9 +10,10 @@ public class TBManager : MonoBehaviour
     [LabelText("触发按键"), SerializeField]
     private KeyCode key = KeyCode.F;
     public static TBManager instance;
-    Sequence seq, coldTimer;
-    TransformStep step = new TransformStep();
-    int counter = 0;
+    private Sequence seq, coldTimer;
+    private int counter = 0;
+    public GameObject flashLight;
+    public Queue transformQueue = new Queue();
     public static TBManager Instance
     {
         get { return instance; }
@@ -22,8 +23,8 @@ public class TBManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(this);
         }
+        DontDestroyOnLoad(this);
     }
     public void Start()
     {
@@ -93,22 +94,30 @@ public class TBManager : MonoBehaviour
         {
            if(TBController.Instance.CurrentFlashState == TBController.FlashState.Normal)
            {
-                seq.Restart();
+                Debug.Log("can flash");
                 TBController.Instance.NormalToFlash();
+                Player.Instance.transform.position = flashLight.transform.position;
+                Player.Instance.transform.rotation = flashLight.transform.rotation;
+                RestartFlashUpdate();
+                coldTimer.Restart();
                 //Player.Instance.Flash(step);
-           }
+            }
         }
     }
     private void FixedUpdate()
     {
-        if(counter <= 300)
+        transformQueue.Enqueue(Player.Instance.GetTransfomStep());
+        if (counter <= 300)
         {
             counter++;
-            //SetActive 参照物
         }
         else
         {
-            //step = Player.Instance.GetTransfomStep();
+            if(flashLight.activeSelf == false)
+            {
+                flashLight.SetActive(true);
+            }
+            UpdateFlash();
         }
     }
 
@@ -125,14 +134,14 @@ public class TBManager : MonoBehaviour
     {
         Debug.Log("Init coldTimer");
         coldTimer.AppendInterval(5);
-        seq.AppendCallback(BackToNormal);
-        seq.SetAutoKill(false);
-        seq.SetUpdate(true);
+        coldTimer.AppendCallback(BackToNormal_Flash);
+        coldTimer.SetAutoKill(false);
+        coldTimer.SetUpdate(true);
     }
 
     private void BackToNormal()
     {
-        Debug.Log("Manager back to normal");
+        //Debug.Log("Manager back to normal");
         TBController.Instance.ChooseToNormal();
     }
     private void BackToNormal_Flash()
@@ -141,4 +150,21 @@ public class TBManager : MonoBehaviour
         TBController.Instance.FlashToNormal();
     }
     
+    public void UpdateFlash()
+    {
+        TransformStep step = (TransformStep)transformQueue.Dequeue();
+        flashLight.transform.position = step.position;
+        flashLight.transform.rotation = step.rotation;
+    }
+
+    public void RestartFlashUpdate()
+    {
+        Debug.Log("RestartFlashUpdate");
+        if (flashLight.activeSelf == true)
+        {
+            flashLight.SetActive(false);
+        }
+        transformQueue.Clear();
+        counter = 0;
+    }
 }

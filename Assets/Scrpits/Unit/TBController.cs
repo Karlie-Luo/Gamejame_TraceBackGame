@@ -323,7 +323,7 @@ public class TBController : MonoBehaviour
     }
     public void NormalToFlash()
     {
-        Debug.Log("Controller Back to normal");
+        Debug.Log("Controller to flash");
         UpdateFlashState(FlashState.Flash);
     }
 

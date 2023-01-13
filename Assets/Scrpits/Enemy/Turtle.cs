@@ -27,7 +27,7 @@ public class Turtle : MonoBehaviour
             return;
         }
         EnemyMove();
-        //EnemyAttack();
+        EnemyAttack();
     }
 
     private void EnemyMove()

@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Kurisu.TimeControl;
 
-public class PlayerMove : MonoBehaviour
+public class Player : MonoBehaviour
 {
     // Start is called before the first frame update
     public Rigidbody2D rb;
@@ -28,6 +29,22 @@ public class PlayerMove : MonoBehaviour
     float timeStopTime;
 
     public GameObject timestopsphere;
+
+    public static Player instance;
+    public static Player Instance
+    {
+        get { return instance; }
+    }
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        DontDestroyOnLoad(this);
+    }
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -130,5 +147,13 @@ public class PlayerMove : MonoBehaviour
             jumpCount--;
             jumpPressed = false;
         }
+    }
+
+    public TransformStep GetTransfomStep()
+    {
+        TransformStep step = new TransformStep();
+        step.position = transform.position;
+        step.rotation = transform.rotation;
+        return step;
     }
 }
