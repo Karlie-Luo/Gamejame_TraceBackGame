@@ -12,6 +12,7 @@ public class Turtle : MonoBehaviour
     private bool findPlayer = false;
     public float alertDistance;
     public float patrolDistance;
+    public float dieSpeed;
     void Start()
     {
         spikesOutCollider = GetComponent<PolygonCollider2D>();
@@ -27,7 +28,7 @@ public class Turtle : MonoBehaviour
             return;
         }
         EnemyMove();
-        //EnemyAttack();
+        EnemyAttack();
     }
 
     private void EnemyMove()
@@ -96,7 +97,7 @@ public class Turtle : MonoBehaviour
         {
             EnemyDie();
         }
-        if(collision.gameObject.tag != "Ground" && collision.gameObject.tag != "Player") //µØ°å
+        if(collision.gameObject.tag != "Ground" && collision.gameObject.tag != "Player" && collision.gameObject.tag != "Bullet") 
         {
             dir *= -1;
             if(transform.localRotation == quaternion)
@@ -108,8 +109,21 @@ public class Turtle : MonoBehaviour
                 transform.localRotation = Quaternion.Euler(0, 0, 0);
             }
         }
+        
     }
-
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Bullet")
+        {
+            Vector2 vel = collision.gameObject.GetComponent<Rigidbody2D>().velocity;
+            float velAbs = Mathf.Sqrt(vel.x * vel.x + vel.y * vel.y);
+            Debug.Log($"{velAbs}");
+            if (velAbs > dieSpeed)
+            {
+                EnemyDie();
+            }
+        }
+    }
     private void EnemyDie()
     {
         animator.SetTrigger("die");
