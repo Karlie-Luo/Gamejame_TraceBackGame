@@ -14,6 +14,7 @@ public class Bee : MonoBehaviour
     private int shootIndex = 0;
     public float shootInterval;
     public float alertDistance;
+    public float dieSpeed;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +25,7 @@ public class Bee : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (shootIndex >= 5)
+        if (shootIndex >= 99)
         {
             EnemyDie();
         }
@@ -75,11 +76,17 @@ public class Bee : MonoBehaviour
         Vector2 bulletPosition = new Vector2(transform.position.x, transform.position.y - 1.0f);
         Instantiate(bullet, bulletPosition, Quaternion.Euler(0, 0, 0));
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Bullet")
         {
-            EnemyDie();
+            Vector2 vel = collision.gameObject.GetComponent<Rigidbody2D>().velocity;
+            float velAbs = Mathf.Sqrt(vel.x * vel.x + vel.y * vel.y);
+            Debug.Log($"{velAbs}");
+            if (velAbs > dieSpeed)
+            {
+                EnemyDie();
+            }
         }
     }
     private void EnemyDie()
