@@ -28,6 +28,7 @@ public class Player : MonoBehaviour
     float time;
     float timeStopTime;
 
+    public GameObject sceneFadeInOut;
     public GameObject timestopsphere;
 
     public static Player instance;
@@ -69,7 +70,6 @@ public class Player : MonoBehaviour
             {
                 jumpContinue = false;
             }
-            TimeStopChecks();
         }
         else 
         {
@@ -105,16 +105,13 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void TimeStopChecks()
+    public void TimeStopChecks()
     {
-        if (UnityEngine.Input.GetKeyDown(KeyCode.K))
-        {
-            Debug.Log("按下时停");
-            Time.timeScale = 0;
-            timestopsphere.gameObject.SetActive(true);
-            timestopsphere.gameObject.transform.position = this.gameObject.transform.position + new Vector3(0, 0, 3);
-            isTimeStopStart = true;
-        }
+        Debug.Log("按下时停");
+        Time.timeScale = 0;
+        timestopsphere.gameObject.SetActive(true);
+        timestopsphere.gameObject.transform.position = this.gameObject.transform.position + new Vector3(0, 0, 3);
+        isTimeStopStart = true;
     }
     void GroundMove()
     {
@@ -173,4 +170,10 @@ public class Player : MonoBehaviour
         step.rotation = transform.rotation;
         return step;
     }
+
+    public void Rebirth()
+    {
+        Debug.Log("Rebirth");
+        sceneFadeInOut.GetComponentInChildren<SceneFadeInOut>().ReloadEffect();
+    } 
 }
