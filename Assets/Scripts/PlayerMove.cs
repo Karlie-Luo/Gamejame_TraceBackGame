@@ -28,14 +28,6 @@ public class PlayerMove : MonoBehaviour
     float timeStopTime;
 
     public GameObject timestopsphere;
-
-    private static PlayerMove instance;
-    public static PlayerMove GetInstance()
-    {
-        if (instance == null)
-            instance = new PlayerMove();
-        return instance;
-    }
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
