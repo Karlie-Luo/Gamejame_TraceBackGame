@@ -28,7 +28,8 @@ public class TBStore : MonoBehaviour
         {
             TBController.Instance.Remove(this);
             TBController.Instance.OnRecallEndEvent -= TimeStoreOver;
-            TBController.Instance.OnRecallEvent -= RecallTick;
+            TBController.Instance.OnRecallFastEvent -= RecallTickFast;
+            TBController.Instance.OnRecallSlowEvent -= RecallTickSlow;
             TBController.Instance.OnRecordEvent -= RecordTick;
 
         }
@@ -56,14 +57,23 @@ public class TBStore : MonoBehaviour
     /// <summary>
     /// 开始回溯
     /// </summary>
-    public virtual void Recall()
+    public virtual void RecallFast()
     {
         TBController.Instance.OnRecordEvent -= RecordTick;
         if (locked)
             return;
-        TBController.Instance.OnRecallEvent += RecallTick;
+        TBController.Instance.OnRecallFastEvent += RecallTickFast;
         TBController.Instance.OnRecallEndEvent += TimeStoreOver;
     }
+    public virtual void RecallSlow()
+    {
+        TBController.Instance.OnRecordEvent -= RecordTick;
+        if (locked)
+            return;
+        TBController.Instance.OnRecallSlowEvent += RecallTickSlow;
+        TBController.Instance.OnRecallEndEvent += TimeStoreOver;
+    }
+
     /// <summary>
     /// 终止回溯和记录
     /// </summary>
@@ -71,7 +81,8 @@ public class TBStore : MonoBehaviour
     {
         steps.Clear();
         TBController.Instance.OnRecallEndEvent -= TimeStoreOver;
-        TBController.Instance.OnRecallEvent -= RecallTick;
+        TBController.Instance.OnRecallFastEvent -= RecallTickFast;
+        TBController.Instance.OnRecallSlowEvent -= RecallTickSlow;
         TBController.Instance.OnRecordEvent -= RecordTick;
     }
     /// <summary>
@@ -96,7 +107,7 @@ public class TBStore : MonoBehaviour
     /// <summary>
     /// 回溯时刻
     /// </summary>
-    public virtual void RecallTick()
+    public virtual void RecallTickSlow()
     {
         if (steps.Count == 0)
             return;
@@ -105,4 +116,18 @@ public class TBStore : MonoBehaviour
         transform.rotation = oldStep.rotation;
 
     }
+    public virtual void RecallTickFast()
+    {
+        if (steps.Count == 0)
+            return;
+        TransformStep oldStep = new TransformStep();
+        for (int i = 0; i < 2; i ++)
+        {
+            oldStep = steps.Pop();
+        }
+        transform.position = oldStep.position;
+        transform.rotation = oldStep.rotation;
+
+    }
+
 }

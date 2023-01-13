@@ -12,7 +12,8 @@ public class TBController : MonoBehaviour
         Normal,
         Choose,
         Record,
-        Recall
+        RecallFast,
+        RecallSlow
     }
     [LabelText("回溯器列表"), SerializeField]
     private List<TBStore> stores = new List<TBStore>();
@@ -39,7 +40,7 @@ public class TBController : MonoBehaviour
     /// </summary>
     [SerializeField, LabelText("记录步长"), Range(0.01f, 0.2f), Tooltip("每多少秒记录一次"), DisableIf("state", TBState.Record)]
     private float recordStep = 0.02f;
-    [SerializeField, LabelText("回溯步长"), Range(0.01f, 0.2f), Tooltip("每多少秒回溯一次"), DisableIf("state", TBState.Recall)]
+    [SerializeField, LabelText("回溯步长"), Range(0.01f, 0.2f), Tooltip("每多少秒回溯一次"), DisableIf("state", TBState.RecallFast)]
     private float recallStep = 0.02f;
     /// <summary>
     /// 当前记录步长
@@ -64,9 +65,13 @@ public class TBController : MonoBehaviour
     /// </summary>
     public event Action OnRecordEvent;
     /// <summary>
-    /// 回溯中事件
+    /// 回溯中事件（慢回溯）
     /// </summary>
-    public event Action OnRecallEvent;
+    public event Action OnRecallSlowEvent;
+    /// <summary>
+    /// 回溯中事件（快回溯）
+    /// </summary>
+    public event Action OnRecallFastEvent;
     /// <summary>
     /// 记录数变更事件（适用于UI更新）
     /// </summary>
@@ -181,15 +186,27 @@ public class TBController : MonoBehaviour
     /// <summary>
     /// 回溯器开始回溯
     /// </summary>
-    [Button("回溯"), HideInEditorMode, EnableIf("state", TBState.Record)]
-    public void RecallAll()
+    [Button("快回溯"), HideInEditorMode, EnableIf("state", TBState.Record)]
+    public void RecallAllFast()
     {
         timer = 0;
-        UpdateState(TBState.Recall);
+        UpdateState(TBState.RecallFast);
         OnRecallStartEvent?.Invoke();
         foreach (var store in stores)
         {
-            store.Recall();
+            store.RecallFast();
+        }
+        recallCount = currentCount;
+    }
+    [Button("慢回溯"), HideInEditorMode, EnableIf("state", TBState.Record)]
+    public void RecallAllSlow()
+    {
+        timer = 0;
+        UpdateState(TBState.RecallSlow);
+        OnRecallStartEvent?.Invoke();
+        foreach (var store in stores)
+        {
+            store.RecallSlow();
         }
         recallCount = currentCount;
     }
@@ -232,7 +249,7 @@ public class TBController : MonoBehaviour
                 {
                     if (currentCount >= capacity)//到达上限直接回溯
                     {
-                        RecallAll();
+                        RecallAllSlow();
                         break;
                     }
                     timer += deltaTime;
@@ -245,7 +262,7 @@ public class TBController : MonoBehaviour
                     }
                     break;
                 }
-            case TBState.Recall:
+            case TBState.RecallSlow:
                 {
                     if (currentCount == 0)//回溯结束调用回溯结束事件
                     {
@@ -259,8 +276,21 @@ public class TBController : MonoBehaviour
                         timer = 0;
                         currentCount -= 1;
                         OnStepChangeEvent?.Invoke((float)currentCount / Capacity);
-                        OnRecallEvent?.Invoke();//未结束则调用回溯时刻
+                        OnRecallSlowEvent?.Invoke();//未结束则调用回溯时刻
                     }
+                    break;
+                }
+            case TBState.RecallFast:
+                {
+                    if (currentCount == 0)//回溯结束调用回溯结束事件
+                    {
+                        OnRecallEndEvent?.Invoke();
+                        UpdateState(TBState.Normal);
+                        break;
+                    }
+                    currentCount -= 2;
+                    OnStepChangeEvent?.Invoke((float)currentCount / Capacity);
+                    OnRecallFastEvent?.Invoke();//未结束则调用回溯时刻
                     break;
                 }
         }
@@ -269,17 +299,5 @@ public class TBController : MonoBehaviour
     {
         state = newState;
         OnStateChangeEvent?.Invoke(state);
-    }
-
-    public void ChangeRecallSpeed(bool speed)
-    {
-        if(speed)
-        {
-            recallStep = 1f;
-        }
-        else
-        {
-            recallStep = 0.01f;
-        }
     }
 }

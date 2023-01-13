@@ -68,8 +68,7 @@ public class TBManager : MonoBehaviour
             if (TBController.Instance.CurrentState == TBController.TBState.Record)
             {
                 Debug.Log("fast recall");
-                TBController.Instance.ChangeRecallSpeed(true);
-                TBController.Instance.RecallAll();
+                TBController.Instance.RecallAllSlow();
             }
         }
         else if(Input.GetKeyDown(KeyCode.LeftShift))
@@ -77,8 +76,7 @@ public class TBManager : MonoBehaviour
             if (TBController.Instance.CurrentState == TBController.TBState.Record)
             {
                 Debug.Log("slow recall");
-                TBController.Instance.ChangeRecallSpeed(false);
-                TBController.Instance.RecallAll();
+                TBController.Instance.RecallAllFast();
             }
         }
     }
