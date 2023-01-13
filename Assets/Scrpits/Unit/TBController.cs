@@ -15,6 +15,11 @@ public class TBController : MonoBehaviour
         RecallFast,
         RecallSlow
     }
+    public enum FlashState
+    {
+        Normal,
+        Flash
+    }
     [LabelText("回溯器列表"), SerializeField]
     private List<TBStore> stores = new List<TBStore>();
     private TBStore playerStore;
@@ -23,6 +28,11 @@ public class TBController : MonoBehaviour
     public TBState CurrentState
     {
         get { return state; }
+    }
+    private FlashState flashState;
+    public FlashState CurrentFlashState
+    {
+        get { return flashState; }
     }
     /// <summary>
     /// 为所有回溯器预设容量,你可以测试内存占用后提高上限，因为动态扩容会1.5倍增加容量带来浪费,尽量不要在游戏时扩容
@@ -300,4 +310,21 @@ public class TBController : MonoBehaviour
         state = newState;
         OnStateChangeEvent?.Invoke(state);
     }
+
+    private void UpdateFlashState(FlashState newState)
+    {
+        flashState = newState;
+    }
+
+    public void FlashToNormal()
+    {
+        Debug.Log("Controller Back to normal");
+        UpdateFlashState(FlashState.Normal);
+    }
+    public void NormalToFlash()
+    {
+        Debug.Log("Controller Back to normal");
+        UpdateFlashState(FlashState.Flash);
+    }
+
 }
