@@ -12,6 +12,7 @@ public class dragController : MonoBehaviour
     // Update is called once per frame
     GameObject dragObj = null;
     private Vector3 distance;
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.J))
@@ -26,7 +27,6 @@ public class dragController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Debug.Log(Player.instance.speed);
         if (dragObj != null && dragPressed)
         {
             Debug.Log("hahaha");
@@ -50,8 +50,6 @@ public class dragController : MonoBehaviour
     {
         if(collision.gameObject.layer==3)
         {
-            Debug.Log("aaaaaa");
-            Debug.Log(dragPressed + "dragPressed");
             if (dragPressed == true)
             {
                 dragObj = collision.gameObject;

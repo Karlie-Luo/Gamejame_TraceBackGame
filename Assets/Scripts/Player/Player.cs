@@ -47,6 +47,7 @@ public class Player : MonoBehaviour
             instance = this;
         }
         DontDestroyOnLoad(this);
+        Debug.Log(ground.value);
     }
 
     void Start()
@@ -169,7 +170,7 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == 6)
+        if (collision.gameObject.layer == 3 || collision.gameObject.layer == 6)
         {
             isGround = true;
             Debug.Log("在地面上");
@@ -178,7 +179,7 @@ public class Player : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == 6)
+        if (collision.gameObject.layer == 3|| collision.gameObject.layer == 6)
         {
             isGround = false;
             Debug.Log("起飞");
