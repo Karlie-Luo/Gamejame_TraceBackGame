@@ -2,12 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 
 public class CheckPoint : MonoBehaviour
 {
-    public GameObject player;
-    public bool playerDie = false;
-    private Vector3 playerPos;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,18 +15,12 @@ public class CheckPoint : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(playerDie)
+        if(Player.Instance.afterBlink)
         {
-            SceneFadeInOut.sceneReloading = true;
-            SceneFadeInOut.sceneEnding = true;
-            //player.transform.position = playerPos;
-        }
-    }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.tag == "Player")
-        {
-            playerPos = player.transform.position;
+            Debug.Log("move place");
+            Player.Instance.transform.position = this.transform.position;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            Player.Instance.afterBlink = false;
         }
     }
 
