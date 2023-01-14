@@ -31,8 +31,8 @@ public class SkullHole : MonoBehaviour
 
     private void Gengrate()
     {
-        float playerPositionX = GameObject.Find("Player").transform.position.x;
-        float playerPositionY = GameObject.Find("Player").transform.position.y;
+        float playerPositionX = Player.Instance.transform.position.x;
+        float playerPositionY = Player.Instance.transform.position.y;
         float distance = Mathf.Sqrt(Mathf.Abs(playerPositionX - transform.position.x) * Mathf.Abs(playerPositionX - transform.position.x) +
         Mathf.Abs(playerPositionY - transform.position.y) * Mathf.Abs(playerPositionY - transform.position.y));
         if(distance < alertDistance)

@@ -63,15 +63,15 @@ public class Skull : MonoBehaviour
         }
         else
         {
-            if (GameObject.Find("Player").transform.position.x > transform.position.x)
+            if (Player.Instance.transform.position.x > transform.position.x)
             {
                 dirX = 1;
-                if ((GameObject.Find("Player").transform.position.x - transform.position.x) > 0.5f)
+                if ((Player.Instance.transform.position.x - transform.position.x) > 0.5f)
                 {
                     transform.localRotation = Quaternion.Euler(0, 0, 0);
                 }
             }
-            if (GameObject.Find("Player").transform.position.x < transform.position.x)
+            if (Player.Instance.transform.position.x < transform.position.x)
             {
                 dirX = -1;
                 if((transform.position.x - GameObject.Find("Player").transform.position.x) > 0.5f)
@@ -79,7 +79,7 @@ public class Skull : MonoBehaviour
                     transform.localRotation = Quaternion.Euler(0, 180, 0);
                 }                
             }
-            if (GameObject.Find("Player").transform.position.y > transform.position.y)
+            if (Player.Instance.transform.position.y > transform.position.y)
             {
                 dirY = 1;
             }
@@ -95,8 +95,8 @@ public class Skull : MonoBehaviour
 
     private void EnemyAttack()
     {
-        float playerPositionX = GameObject.Find("Player").transform.position.x;
-        float playerPositionY = GameObject.Find("Player").transform.position.y;
+        float playerPositionX = Player.Instance.transform.position.x;
+        float playerPositionY = Player.Instance.transform.position.y;
         float distance = Mathf.Sqrt(Mathf.Abs(playerPositionX - transform.position.x) * Mathf.Abs(playerPositionX - transform.position.x) +
         Mathf.Abs(playerPositionY - transform.position.y) * Mathf.Abs(playerPositionY - transform.position.y));
         if (distance < alertDistance)

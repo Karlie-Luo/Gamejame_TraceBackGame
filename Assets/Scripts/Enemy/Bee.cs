@@ -39,14 +39,14 @@ public class Bee : MonoBehaviour
 
     private void EnemyMove()
     {
-        float distance = Mathf.Abs(GameObject.Find("Player").transform.position.x - transform.position.x);
+        float distance = Mathf.Abs(Player.Instance.transform.position.x - transform.position.x);
         if(distance < alertDistance)
         {
-            if (GameObject.Find("Player").transform.position.x > transform.position.x)
+            if (Player.Instance.transform.position.x > transform.position.x)
             {
                 transform.Translate(transform.right  * Time.deltaTime);
             }
-            if (GameObject.Find("Player").transform.position.x < transform.position.x)
+            if (Player.Instance.transform.position.x < transform.position.x)
             {
                 transform.Translate(transform.right * -1 * Time.deltaTime);
             }
