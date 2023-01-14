@@ -18,12 +18,14 @@ public class Player : MonoBehaviour
     public LayerMask ground;
 
     public bool isGround, isJump;
-     
+    public bool cannotDrag;
+    
     bool jumpPressed;
     bool jumpContinue;
     public int jumpCount;
     private int movingcount = 0;
     public float jumpDownForce;
+    
 
     bool dragPressed = false;
     bool isTimeStopStart = false;
@@ -157,10 +159,12 @@ public class Player : MonoBehaviour
         {
             jumpCount = 2;
             isJump = false;
+            cannotDrag = false;
         }
         if (isGround && jumpPressed)
         {
             isJump = true;
+            cannotDrag = true;
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             jumpCount--;
             jumpPressed = false;

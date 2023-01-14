@@ -15,19 +15,22 @@ public class dragController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.J))
+        if (!Player.instance.isJump)
         {
-            dragPressed = true;
-        }
-        if (Input.GetKeyUp(KeyCode.J))
-        {
-            dragPressed = false;
+            if (Input.GetKeyDown(KeyCode.J))
+            {
+                dragPressed = true;
+            }
+            if (Input.GetKeyUp(KeyCode.J))
+            {
+                dragPressed = false;
+            }
         }
     }
 
     private void FixedUpdate()
     {
-        if (dragObj != null && dragPressed)
+        if (dragObj != null && dragPressed&&!Player.instance.cannotDrag)
         {
             Debug.Log("hahaha");
             dragObj.transform.position = this.transform.position + distance;
