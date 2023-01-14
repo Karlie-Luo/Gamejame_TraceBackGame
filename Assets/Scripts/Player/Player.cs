@@ -39,11 +39,15 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
+        if (instance != null)
         {
-            instance = this;
+            Destroy(gameObject);
         }
-        DontDestroyOnLoad(this);
+        else
+        {
+            instance = (Player)this;
+            DontDestroyOnLoad(this);
+        }
     }
 
     void Start()
@@ -170,7 +174,6 @@ public class Player : MonoBehaviour
         step.rotation = transform.rotation;
         return step;
     }
-
     public void Rebirth()
     {
         Debug.Log("Rebirth");

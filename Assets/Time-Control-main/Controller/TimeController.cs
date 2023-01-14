@@ -92,7 +92,7 @@ public class TimeController : MonoBehaviour
     {
         get{return instance;}
     }
-    protected virtual void  Awake()
+    protected virtual void Awake()
      {
        if (instance!=null)
            Destroy(gameObject);
