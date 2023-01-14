@@ -62573,8 +62573,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83fb2dad70f4016498ebd6cee557ab1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 1694065798}
-  subject: {fileID: 917618032}
 --- !u!212 &342996428
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -62865,7 +62863,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1914e634eef9e84e96cfa525e4db50e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 917618032}
   smoothing: 0.1
   minPosition: {x: -180, y: -10}
   maxPosition: {x: 90, y: 15}
@@ -63297,8 +63294,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83fb2dad70f4016498ebd6cee557ab1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 1694065798}
-  subject: {fileID: 917618032}
 --- !u!212 &900987316
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -63478,11 +63473,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b085b04890e1db449ecc7e28d16c1af, type: 3}
---- !u!4 &917618032 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2625359950801429488, guid: 0bc441cc37ee4884eb6b7187ca3956d7, type: 3}
-  m_PrefabInstance: {fileID: 1300933398}
-  m_PrefabAsset: {fileID: 0}
 --- !u!212 &917618033 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 2625359950801429503, guid: 0bc441cc37ee4884eb6b7187ca3956d7, type: 3}
@@ -63993,8 +63983,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83fb2dad70f4016498ebd6cee557ab1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 1694065798}
-  subject: {fileID: 917618032}
 --- !u!212 &1435604977
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -67357,8 +67345,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83fb2dad70f4016498ebd6cee557ab1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 1694065798}
-  subject: {fileID: 917618032}
 --- !u!212 &1824260100
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -67700,8 +67686,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83fb2dad70f4016498ebd6cee557ab1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 1694065798}
-  subject: {fileID: 917618032}
 --- !u!212 &1933279770
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -130695,8 +130679,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83fb2dad70f4016498ebd6cee557ab1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 1694065798}
-  subject: {fileID: 917618032}
 --- !u!212 &2024527727
 SpriteRenderer:
   m_ObjectHideFlags: 0
