@@ -9,6 +9,9 @@ public class Player : MonoBehaviour
     public Rigidbody2D rb;
     public Collider2D coll;
     public Animation anim;
+    public Animator animt;
+    public AudioClip[] audios;
+    public AudioSource walkAudio;
 
     public float jumpForce,speed;
     public Transform groundCheck;
@@ -50,6 +53,9 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<Collider2D>();
         anim = GetComponent<Animation>();
+        animt = GetComponent<Animator>();
+        //audio = GetComponent<AudioSource>();
+        walkAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -123,8 +129,10 @@ public class Player : MonoBehaviour
 
         if (horizontalMove != 0)
         {
-            transform.localScale = new Vector3(horizontalMove, 1, 1);
+            walkAudio.Play();
+            transform.localScale = new Vector3(horizontalMove * 5, transform.localScale.y, transform.localScale.z);
         }
+        animt.SetFloat("walk", Mathf.Abs(rb.velocity.x));
     }
 
     void Jump()
@@ -141,12 +149,8 @@ public class Player : MonoBehaviour
             jumpCount--;
             jumpPressed = false;
         }
-        //else if (jumpPressed && jumpCount > 0 && isJump)
-        //{
-        //    rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-        //    jumpCount--;
-        //    jumpPressed = false;
-        //}
+        animt.SetFloat("jumpFall", rb.velocity.y);
+        Debug.Log(rb.velocity.y + " 速度");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -155,6 +159,7 @@ public class Player : MonoBehaviour
         {
             isGround = true;
             Debug.Log("在地面上");
+            animt.SetBool("isGround", true);
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -163,6 +168,7 @@ public class Player : MonoBehaviour
         {
             isGround = false;
             Debug.Log("起飞");
+            animt.SetBool("isGround", false);
         }
     }
 
