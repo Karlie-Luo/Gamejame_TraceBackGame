@@ -32,6 +32,7 @@ public class Player : MonoBehaviour
     float time;
     float timeStopTime;
 
+    public GameObject sceneFadeInOut;
     public GameObject timestopsphere;
 
     public static Player instance;
@@ -42,12 +43,16 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
+        if (instance != null)
         {
-            instance = this;
+            Destroy(gameObject);
         }
-        DontDestroyOnLoad(this);
-        Debug.Log(ground.value);
+        else
+        {
+            instance = (Player)this;
+            DontDestroyOnLoad(this);
+        }
+
     }
 
     void Start()
@@ -77,11 +82,10 @@ public class Player : MonoBehaviour
             {
                 jumpContinue = false;
             }
-            TimeStopChecks();
         }
         else 
         {
-            Debug.Log("Ê±Í£¿ªÊ¼");
+            Debug.Log("Ê±Í£ï¿½ï¿½Ê¼");
             timeStopTime += Time.unscaledDeltaTime;
             if (timeStopTime >= 2.0f)
             {
@@ -113,16 +117,13 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void TimeStopChecks()
+    public void TimeStopChecks()
     {
-        if (UnityEngine.Input.GetKeyDown(KeyCode.K))
-        {
-            Debug.Log("°´ÏÂÊ±Í£");
-            Time.timeScale = 0;
-            timestopsphere.gameObject.SetActive(true);
-            timestopsphere.gameObject.transform.position = this.gameObject.transform.position + new Vector3(0, 0, 3);
-            isTimeStopStart = true;
-        }
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½Ê±Í£");
+        Time.timeScale = 0;
+        timestopsphere.gameObject.SetActive(true);
+        timestopsphere.gameObject.transform.position = this.gameObject.transform.position + new Vector3(0, 0, 3);
+        isTimeStopStart = true;
     }
     void GroundMove()
     {
@@ -173,7 +174,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.layer == 3 || collision.gameObject.layer == 6)
         {
             isGround = true;
-            Debug.Log("ÔÚµØÃæÉÏ");
+            Debug.Log("ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½");
             animt.SetBool("isGround", true);
         }
     }
@@ -182,7 +183,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.layer == 3|| collision.gameObject.layer == 6)
         {
             isGround = false;
-            Debug.Log("Æð·É");
+            Debug.Log("ï¿½ï¿½ï¿½");
             animt.SetBool("isGround", false);
         }
     }
@@ -194,4 +195,9 @@ public class Player : MonoBehaviour
         step.rotation = transform.rotation;
         return step;
     }
+    public void Rebirth()
+    {
+        Debug.Log("Rebirth");
+        sceneFadeInOut.GetComponentInChildren<SceneFadeInOut>().ReloadEffect();
+    } 
 }

@@ -11,6 +11,7 @@ public class Plant : MonoBehaviour
     public bool left;
     public float shootInterval;
     public float alertDistance;
+    public float dieSpeed;
     // Start is called before the first frame update
     void Start()
     {
@@ -63,5 +64,25 @@ public class Plant : MonoBehaviour
         Vector2 bulletPosition = new Vector2(transform.position.x + shiftPos, transform.position.y + 0.4f);
         Instantiate(bullet, bulletPosition, Quaternion.Euler(0, 0, shiftAngle));
     }
+    
+    private void EnemyDie()
+    {
+        animator.SetTrigger("Die");
+        isDie = true;
+        Destroy(GetComponent<BoxCollider2D>());
+        Destroy(gameObject, 0.5f);
+    }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Bullet")
+        {
+            Vector2 vel = collision.gameObject.GetComponent<Rigidbody2D>().velocity;
+            float velAbs = Mathf.Sqrt(vel.x * vel.x + vel.y * vel.y);
+            if (velAbs > dieSpeed)
+            {
+                EnemyDie();
+            }
+        }
+    }
 }

@@ -46,7 +46,7 @@ public class Skull : MonoBehaviour
                 dirX = dirX * -1;
                 transform.localRotation = Quaternion.Euler(0, 180, 0);
             }
-            if (transform.position.x < startPosX - patrolDistance)
+            if (transform.position.x <= startPosX - patrolDistance)
             {
                 dirX = dirX * -1;
                 transform.localRotation = Quaternion.Euler(0, 0, 0);
@@ -55,7 +55,7 @@ public class Skull : MonoBehaviour
             {
                 dirY = dirY * -1;
             }
-            if (transform.position.y < startPosY - patrolDistance)
+            if (transform.position.y <= startPosY - patrolDistance)
             {
                 dirY = dirY * -1;
             }

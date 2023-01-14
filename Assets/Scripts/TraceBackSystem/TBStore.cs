@@ -123,11 +123,16 @@ public class TBStore : MonoBehaviour
         TransformStep oldStep = new TransformStep();
         for (int i = 0; i < 2; i ++)
         {
+            if(steps.Count == 0)
+            {
+                transform.position = oldStep.position;
+                transform.rotation = oldStep.rotation;
+                return;
+            }
             oldStep = steps.Pop();
         }
         transform.position = oldStep.position;
         transform.rotation = oldStep.rotation;
-
     }
 
 }
