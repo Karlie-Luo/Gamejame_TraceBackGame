@@ -88,8 +88,8 @@ public class Skull : MonoBehaviour
                 dirY = -1;
             }
         }
-            transform.Translate(transform.right * dirX * Time.deltaTime);
-            transform.Translate(transform.up * dirY * Time.deltaTime * 0.8f);
+            transform.Translate(transform.right * dirX * Time.deltaTime * 2f);
+            transform.Translate(transform.up * dirY * Time.deltaTime * 2f);
              
     }
 

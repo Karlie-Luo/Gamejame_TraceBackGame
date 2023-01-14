@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class SkullBomb : MonoBehaviour
 {
+    private Rigidbody2D rigidbody;
     // Start is called before the first frame update
     void Start()
     {
-        
+        rigidbody = GetComponent<Rigidbody2D>();
+        rigidbody.velocity = transform.up * -0.5f;
     }
 
     // Update is called once per frame
@@ -15,9 +17,9 @@ public class SkullBomb : MonoBehaviour
     {
         
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Player")
         {
             Debug.Log($"Hit");
         }

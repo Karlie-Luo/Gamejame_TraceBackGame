@@ -88,10 +88,7 @@ public class Bee : MonoBehaviour
                 EnemyDie();
             }
         }
-    }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Bullet")
+        if(collision.gameObject.tag == "Bomb")
         {
             EnemyDie();
         }

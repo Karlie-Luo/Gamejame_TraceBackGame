@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6952758056966312369}
   - component: {fileID: 2417093686921770765}
   - component: {fileID: 8390889376478195102}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Skull
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -143,8 +143,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b63de6cc1988f5e4a885f8324b1cedcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BombCollider: {fileID: 3663912899846019526, guid: e7e7a3167aa22984aab7f201ce7ac4fa, type: 3}
-  alertDistance: 4
+  BombCollider: {fileID: 3663912899846019526, guid: fa88995a25d9a6040ab21003826c8cab, type: 3}
+  alertDistance: 20
   patrolDistance: 2
 --- !u!60 &8390889376478195102
 PolygonCollider2D:
