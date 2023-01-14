@@ -48,12 +48,12 @@ public class Turtle : MonoBehaviour
         }
         else
         {
-            if(GameObject.Find("Player").transform.position.x > transform.position.x)
+            if(Player.Instance.transform.position.x > transform.position.x)
             {
                 dir = 1;
                 transform.localRotation = Quaternion.Euler(0, 180, 0);
             }
-            if (GameObject.Find("Player").transform.position.x < transform.position.x)
+            if (Player.Instance.transform.position.x < transform.position.x)
             {
                 dir = -1;
                 transform.localRotation = Quaternion.Euler(0, 0, 0);
@@ -65,9 +65,9 @@ public class Turtle : MonoBehaviour
     private void EnemyAttack()
     {
         bool hasSpikes = false;
-        float distance = Mathf.Abs(GameObject.Find("Player").transform.position.x - transform.position.x);
+        float distance = Mathf.Abs(Player.Instance.transform.position.x - transform.position.x);
         bool isSameHeight = false;
-        if(Mathf.Abs(GameObject.Find("Player").transform.position.y - transform.position.y) <= 0.5f)
+        if(Mathf.Abs(Player.Instance.transform.position.y - transform.position.y) <= 0.5f)
         {
             isSameHeight = true;
         }
