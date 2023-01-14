@@ -30,6 +30,7 @@ public class SceneFadeInOut : MonoBehaviour
 
         if (sceneEnding)
         {
+            Debug.Log("end scene");
             EndScene();
         }
     }
@@ -64,11 +65,13 @@ public class SceneFadeInOut : MonoBehaviour
             sceneEnding = false;
             if(sceneReloading)
             {
+                Debug.Log("reload this scene");
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                 sceneReloading = false;
             }
             else
             {
+                Debug.Log("load next scene");
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             }          
         }
@@ -78,6 +81,13 @@ public class SceneFadeInOut : MonoBehaviour
     {
         sceneEnding = true;
         sceneReloading = true;
+    }
+
+    public void NextScene()
+    {
+        Debug.Log("next scene");
+        sceneEnding = true;
+        sceneReloading = false;
     }
     
 }

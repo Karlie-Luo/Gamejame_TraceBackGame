@@ -7,24 +7,40 @@ using Kurisu.TimeControl;
 
 public class TBManager : MonoBehaviour
 {
-    [LabelText("´¥·¢°´¼ü"), SerializeField]
-    private KeyCode key = KeyCode.F;
+    public struct AbilityState
+    {
+        public bool fastRecall;
+        public bool slowRecall;
+        public bool flash;
+        public AbilityState(bool value1,bool value2, bool value3)
+        {
+            fastRecall = value1;
+            slowRecall = value2;
+            flash = value3;
+        }
+    }
+
     public static TBManager instance;
     private Sequence seq, coldTimer;
     private int counter = 0;
     public GameObject flashLight;
     public Queue transformQueue = new Queue();
+    public AbilityState abilityState = new AbilityState(false,false,false);
     public static TBManager Instance
     {
         get { return instance; }
     }
     protected virtual void Awake()
     {
-        if (instance == null)
+        if (instance != null)
         {
-            instance = this;
+            Destroy(gameObject);
         }
-        DontDestroyOnLoad(this);
+        else
+        {
+            instance = (TBManager)this;
+            DontDestroyOnLoad(this);
+        }      
     }
     public void Start()
     {
@@ -55,7 +71,7 @@ public class TBManager : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && (abilityState.fastRecall == true || abilityState.slowRecall == true))
         {
             if (TBController.Instance.CurrentState == TBController.TBState.Normal)
             {
@@ -75,7 +91,7 @@ public class TBManager : MonoBehaviour
                 TBController.Instance.ChooseOne();
             }
         }
-        else if (Input.GetKeyDown(KeyCode.LeftControl))
+        else if (Input.GetKeyDown(KeyCode.LeftControl) && abilityState.slowRecall == true)
         {
             if (TBController.Instance.CurrentState == TBController.TBState.Record)
             {
@@ -83,7 +99,7 @@ public class TBManager : MonoBehaviour
                 TBController.Instance.RecallAllSlow();
             }
         }
-        else if (Input.GetKeyDown(KeyCode.LeftShift))
+        else if (Input.GetKeyDown(KeyCode.LeftShift) && abilityState.fastRecall == true)
         {
             if (TBController.Instance.CurrentState == TBController.TBState.Record)
             {
@@ -91,7 +107,7 @@ public class TBManager : MonoBehaviour
                 TBController.Instance.RecallAllFast();
             }
         }
-        else if(Input.GetMouseButtonDown(1))
+        else if(Input.GetMouseButtonDown(1) && abilityState.flash == true)
         {
            if(TBController.Instance.CurrentFlashState == TBController.FlashState.Normal)
            {
@@ -173,5 +189,24 @@ public class TBManager : MonoBehaviour
         }
         transformQueue.Clear();
         counter = 0;
+    }
+
+    public void ActiveAbility(int num)
+    {
+        switch (num)
+        {
+            case 0:
+                abilityState.fastRecall = true;
+                break;
+            case 1:
+                abilityState.slowRecall = true;
+                break;
+            case 2:
+                abilityState.flash = true;
+                break;
+            default:
+                Debug.Log("dont have the ability!");
+                break;
+        }
     }
 }

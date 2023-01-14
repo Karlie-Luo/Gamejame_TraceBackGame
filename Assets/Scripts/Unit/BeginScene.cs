@@ -4,9 +4,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class BeginScene : MonoBehaviour
 {
+    public GameObject sceneFadeInOut;
     public void onBeginButtonClicked()
     {
-        SceneManager.LoadScene("GameScene");
+        Debug.Log("begin button clicked");
+        sceneFadeInOut.GetComponentInChildren<SceneFadeInOut>().NextScene();
     }
     public void onPeopleButtonClicked()
     {
