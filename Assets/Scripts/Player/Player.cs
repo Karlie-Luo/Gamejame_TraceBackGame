@@ -85,7 +85,7 @@ public class Player : MonoBehaviour
         }
         else 
         {
-            Debug.Log("ʱͣ��ʼ");
+  
             timeStopTime += Time.unscaledDeltaTime;
             if (timeStopTime >= 2.0f)
             {
@@ -119,7 +119,6 @@ public class Player : MonoBehaviour
 
     public void TimeStopChecks()
     {
-        Debug.Log("����ʱͣ");
         Time.timeScale = 0;
         timestopsphere.gameObject.SetActive(true);
         timestopsphere.gameObject.transform.position = this.gameObject.transform.position + new Vector3(0, 0, 3);
@@ -134,6 +133,7 @@ public class Player : MonoBehaviour
         {
             if (movingcount==0&&isGround)
             {
+                Debug.Log(walkAudio.name);
                 walkAudio.Play();
                 movingcount++;
             }
@@ -174,7 +174,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.layer == 3 || collision.gameObject.layer == 6)
         {
             isGround = true;
-            Debug.Log("�ڵ�����");
+
             animt.SetBool("isGround", true);
         }
     }
@@ -183,7 +183,6 @@ public class Player : MonoBehaviour
         if (collision.gameObject.layer == 3|| collision.gameObject.layer == 6)
         {
             isGround = false;
-            Debug.Log("���");
             animt.SetBool("isGround", false);
         }
     }
