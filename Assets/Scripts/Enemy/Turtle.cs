@@ -13,6 +13,7 @@ public class Turtle : MonoBehaviour
     public float alertDistance;
     public float patrolDistance;
     public float dieSpeed;
+    public AudioSource dieAudio;
     void Start()
     {
         spikesOutCollider = GetComponent<PolygonCollider2D>();
@@ -93,10 +94,6 @@ public class Turtle : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Quaternion quaternion = Quaternion.Euler(0, 0, 0);
-        if (collision.gameObject.tag == "Player")
-        {
-            EnemyDie();
-        }
         if(collision.gameObject.tag != "Ground" && collision.gameObject.tag != "Player" && collision.gameObject.tag != "Bullet") 
         {
             dir *= -1;
@@ -129,6 +126,7 @@ public class Turtle : MonoBehaviour
     }
     private void EnemyDie()
     {
+        dieAudio.Play();
         animator.SetTrigger("die");
         transform.position = new Vector2(transform.position.x, transform.position.y - 0.05f);
         isDie = true;

@@ -17,6 +17,8 @@ public class Skull : MonoBehaviour
     public GameObject BombCollider;
     public float alertDistance;
     public float patrolDistance;
+    public AudioSource dieAudio;
+    public AudioSource boomAudio;
     // Start is called before the first frame update
     void Start()
     {
@@ -74,7 +76,7 @@ public class Skull : MonoBehaviour
             if (Player.Instance.transform.position.x < transform.position.x)
             {
                 dirX = -1;
-                if((transform.position.x - GameObject.Find("Player").transform.position.x) > 0.5f)
+                if((transform.position.x - Player.Instance.transform.position.x) > 0.5f)
                 {
                     transform.localRotation = Quaternion.Euler(0, 180, 0);
                 }                
@@ -111,6 +113,7 @@ public class Skull : MonoBehaviour
         if (distance < 1f && !isBomb)
         {
             isBomb = true;
+            boomAudio.Play();
             Invoke("EnemyBomb", 1.3f);
             Invoke("EnemyDie", 3f);
         }
@@ -123,6 +126,7 @@ public class Skull : MonoBehaviour
     }
     private void EnemyDie()
     {
+        dieAudio.Play();
         animator.SetTrigger("Die");
         Destroy(GetComponent<BoxCollider2D>());
         Destroy(explosionCollider);
