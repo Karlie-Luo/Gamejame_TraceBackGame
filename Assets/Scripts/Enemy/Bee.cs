@@ -15,6 +15,8 @@ public class Bee : MonoBehaviour
     public float shootInterval;
     public float alertDistance;
     public float dieSpeed;
+    public AudioSource dieAudio;
+    public AudioSource shootAudio;
     // Start is called before the first frame update
     void Start()
     {
@@ -75,6 +77,7 @@ public class Bee : MonoBehaviour
     {
         Vector2 bulletPosition = new Vector2(transform.position.x, transform.position.y - 1.0f);
         Instantiate(bullet, bulletPosition, Quaternion.Euler(0, 0, 0));
+        shootAudio.Play();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -95,6 +98,7 @@ public class Bee : MonoBehaviour
     }
     private void EnemyDie()
     {
+        dieAudio.Play();
         animator.SetTrigger("die");
         Destroy(GetComponent<BoxCollider2D>());
         Destroy(gameObject, 1f);

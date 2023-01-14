@@ -25,7 +25,7 @@ public class TBManager : MonoBehaviour
     private int counter = 0;
     public GameObject flashLight;
     public Queue transformQueue = new Queue();
-    public AbilityState abilityState = new AbilityState(false,false,false);
+    public AbilityState abilityState = new AbilityState(true,true,true);
     public static TBManager Instance
     {
         get { return instance; }

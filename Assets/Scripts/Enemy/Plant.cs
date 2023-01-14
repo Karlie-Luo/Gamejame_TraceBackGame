@@ -12,6 +12,8 @@ public class Plant : MonoBehaviour
     public float shootInterval;
     public float alertDistance;
     public float dieSpeed;
+    public AudioSource dieAudio;
+    public AudioSource shootAudio;
     // Start is called before the first frame update
     void Start()
     {
@@ -54,6 +56,7 @@ public class Plant : MonoBehaviour
 
     private void Fire()
     {
+        shootAudio.Play();
         float shiftPos = 0.5f;
         float shiftAngle = 0;
         if(left)
@@ -67,6 +70,7 @@ public class Plant : MonoBehaviour
     
     private void EnemyDie()
     {
+        dieAudio.Play();
         animator.SetTrigger("Die");
         isDie = true;
         Destroy(GetComponent<BoxCollider2D>());
