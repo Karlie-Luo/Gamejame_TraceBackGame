@@ -77,7 +77,6 @@ public class Player : MonoBehaviour
                 jumpPressed = true;
                 jumpContinue = true;
                 time = Time.time;
-                Debug.Log("aaaaaa");
             }
 
             if (Input.GetKeyUp(KeyCode.Space))
@@ -103,7 +102,6 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Debug.Log(isJump);
         if (!isTimeStopStart)
         {
             //isGround = Physics2D.OverlapCircle(groundCheck.position, 0.01f, ground);
@@ -175,11 +173,20 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == 3 || collision.gameObject.layer == 6)
+        if (collision.gameObject.layer == 6)
         {
             isGround = true;
-
             animt.SetBool("isGround", true);
+        }
+        else if (collision.gameObject.layer == 3)
+        {
+            Vector2 v = collision.ClosestPoint(this.transform.position);
+            if (v.y < transform.position.y &&v.x == transform.position.x)
+            {
+                isGround = true;
+                animt.SetBool("isGround", true);
+
+            }
         }
         if (isJump)
         {
@@ -188,10 +195,20 @@ public class Player : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == 3|| collision.gameObject.layer == 6)
+        if (collision.gameObject.layer == 6)
         {
             isGround = false;
             animt.SetBool("isGround", false);
+        }
+        else if (collision.gameObject.layer == 3)
+        {
+            Vector2 v = collision.ClosestPoint(this.transform.position);
+            if (v.y < transform.position.y && v.x == transform.position.x)
+            {
+                isGround = false;
+                animt.SetBool("isGround", false);
+
+            }
         }
     }
 
