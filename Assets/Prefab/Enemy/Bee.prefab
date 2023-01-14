@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5597631853940632108}
   - component: {fileID: 5597631853940632111}
   - component: {fileID: -8540343945688991098}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Bee
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -145,3 +145,4 @@ MonoBehaviour:
   bullet: {fileID: 3518175509560601264, guid: 4caf8203daee55843a1e5c9eb5b91ade, type: 3}
   shootInterval: 5
   alertDistance: 2
+  dieSpeed: 0

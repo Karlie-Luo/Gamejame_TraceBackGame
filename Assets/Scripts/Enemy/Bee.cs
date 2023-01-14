@@ -88,6 +88,10 @@ public class Bee : MonoBehaviour
                 EnemyDie();
             }
         }
+        if(collision.gameObject.tag == "Bomb")
+        {
+            EnemyDie();
+        }
     }
     private void EnemyDie()
     {

@@ -33,7 +33,7 @@ public class Plant : MonoBehaviour
     {
         float distance = Mathf.Abs(GameObject.Find("Player").transform.position.x - transform.position.x);
         bool isSameHeight = false;
-        if (Mathf.Abs(GameObject.Find("Player").transform.position.y - transform.position.y) <= 0.5f)
+        if (Mathf.Abs(GameObject.Find("Player").transform.position.y - transform.position.y) <= 3f)
         {
             isSameHeight = true;
         }
@@ -83,6 +83,19 @@ public class Plant : MonoBehaviour
             {
                 EnemyDie();
             }
+        }
+        if (collision.gameObject.tag == "Bomb")
+        {
+            EnemyDie();
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Bullet")
+        {
+            EnemyDie();
+            Debug.Log($"BecauseBomb");
         }
     }
 }
