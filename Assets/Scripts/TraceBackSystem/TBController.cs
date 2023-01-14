@@ -138,7 +138,7 @@ public class TBController : MonoBehaviour
             stores.Remove(store);
         }
     }
-    public void ChooseOne()
+    public GameObject ChooseOne()
     {
         GameObject obj = GetTBObject();
         Debug.Log("get obj : " + obj);
@@ -152,6 +152,7 @@ public class TBController : MonoBehaviour
             }
         }
         RecordAll();
+        return obj;
     }
     private GameObject GetTBObject()
     {
@@ -168,7 +169,7 @@ public class TBController : MonoBehaviour
             return null;
         }
     }
-    public void ChooseToNormal()
+    public void BackToNormal()
     {
         Debug.Log("Controller Back to normal");
         UpdateState(TBState.Normal);

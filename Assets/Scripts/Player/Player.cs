@@ -37,6 +37,13 @@ public class Player : MonoBehaviour
     public GameObject sceneFadeInOut;
     public GameObject timestopsphere;
 
+    public SpriteRenderer renderer;
+    private float maxBlinkTime = 0.5f;
+    private float blinkTime = 0f;
+    public bool playerDeath = false;
+    public bool afterBlink = false;
+    private int blinkCount = 0;
+
     public static Player instance;
     public static Player Instance
     {
@@ -70,6 +77,12 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(playerDeath)
+        {
+            Debug.Log("doblink");
+            DoBlink();
+            return;
+        }
         if (!isTimeStopStart)
         {
             if (Input.GetKeyDown(KeyCode.Space) && jumpCount > 0)
@@ -77,7 +90,6 @@ public class Player : MonoBehaviour
                 jumpPressed = true;
                 jumpContinue = true;
                 time = Time.time;
-                Debug.Log("aaaaaa");
             }
 
             if (Input.GetKeyUp(KeyCode.Space))
@@ -103,7 +115,6 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Debug.Log(isJump);
         if (!isTimeStopStart)
         {
             //isGround = Physics2D.OverlapCircle(groundCheck.position, 0.01f, ground);
@@ -175,11 +186,20 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == 3 || collision.gameObject.layer == 6)
+        if (collision.gameObject.layer == 6)
         {
             isGround = true;
-
             animt.SetBool("isGround", true);
+        }
+        else if (collision.gameObject.layer == 3)
+        {
+            Vector2 v = collision.ClosestPoint(this.transform.position);
+            if (v.y < transform.position.y && Mathf.Abs(v.x - transform.position.x) < 0.1)
+            {
+                isGround = true;
+                animt.SetBool("isGround", true);
+
+            }
         }
         if (isJump)
         {
@@ -188,10 +208,20 @@ public class Player : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == 3|| collision.gameObject.layer == 6)
+        if (collision.gameObject.layer == 6)
         {
             isGround = false;
             animt.SetBool("isGround", false);
+        }
+        else if (collision.gameObject.layer == 3)
+        {
+            Vector2 v = collision.ClosestPoint(this.transform.position);
+            if (v.y < transform.position.y && Mathf.Abs(v.x-transform.position.x)<0.1)
+            {
+                isGround = false;
+                animt.SetBool("isGround", false);
+
+            }
         }
     }
 
@@ -205,6 +235,35 @@ public class Player : MonoBehaviour
     public void Rebirth()
     {
         Debug.Log("Rebirth");
-        sceneFadeInOut.GetComponentInChildren<SceneFadeInOut>().ReloadEffect();
+        playerDeath = true;
+        //sceneFadeInOut.GetComponentInChildren<SceneFadeInOut>().ReloadEffect();
     } 
+
+    public void DoBlink()
+    {
+        blinkTime += Time.deltaTime;
+        blinkCount++;
+        if(blinkTime >= maxBlinkTime)
+        {
+            blinkTime = 0f;
+            renderer.enabled = true;
+            playerDeath = false;
+            afterBlink = true;
+            TBManager.instance.PlayerRebirth();
+            return;
+        }
+        if(blinkCount >= 20)
+        {
+            blinkCount = 0;
+            renderer.enabled = !renderer.enabled;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Bullet" || collision.gameObject.tag == "Bomb")
+        {
+            Rebirth();
+        }
+    }
 }

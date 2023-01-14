@@ -15,8 +15,7 @@ public class dragController : MonoBehaviour
 
     void Update()
     {
-        if (!Player.instance.isJump)
-        {
+
             if (Input.GetKeyDown(KeyCode.J))
             {
                 dragPressed = true;
@@ -25,7 +24,6 @@ public class dragController : MonoBehaviour
             {
                 dragPressed = false;
             }
-        }
     }
 
     private void FixedUpdate()
@@ -53,7 +51,7 @@ public class dragController : MonoBehaviour
     {
         if(collision.gameObject.layer==3)
         {
-            if (dragPressed == true)
+            if (dragPressed == true&&Player.instance.isGround)
             {
                 dragObj = collision.gameObject;
                 distance = collision.gameObject.transform.position - this.gameObject.transform.position;

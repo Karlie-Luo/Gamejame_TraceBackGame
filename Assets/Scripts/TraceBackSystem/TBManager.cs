@@ -20,12 +20,15 @@ public class TBManager : MonoBehaviour
         }
     }
 
-    public static TBManager instance;
     private Sequence seq, coldTimer;
     private int counter = 0;
+    private Queue transformQueue = new Queue();
+
     public GameObject flashLight;
-    public Queue transformQueue = new Queue();
-    public AbilityState abilityState = new AbilityState(false,false,false);
+    public GameObject recordObj;
+    public AbilityState abilityState = new AbilityState(true, true, true);
+
+    public static TBManager instance;
     public static TBManager Instance
     {
         get { return instance; }
@@ -82,13 +85,13 @@ public class TBManager : MonoBehaviour
             }
             else if (TBController.Instance.CurrentState == TBController.TBState.Choose)
             {
-                //Ð­³Ì
-                //Ê±Í£
                 if (seq.IsPlaying())
                 {
                     seq.Pause<Sequence>();
                 }
-                TBController.Instance.ChooseOne();
+                Debug.Log("record Pos");
+                recordObj.SetActive(true);
+                recordObj.transform.position = TBController.Instance.ChooseOne().transform.position;
             }
         }
         else if (Input.GetKeyDown(KeyCode.LeftControl) && abilityState.slowRecall == true)
@@ -96,6 +99,7 @@ public class TBManager : MonoBehaviour
             if (TBController.Instance.CurrentState == TBController.TBState.Record)
             {
                 //Debug.Log("slow recall");
+                recordObj.SetActive(false);
                 TBController.Instance.RecallAllSlow();
             }
         }
@@ -104,6 +108,7 @@ public class TBManager : MonoBehaviour
             if (TBController.Instance.CurrentState == TBController.TBState.Record)
             {
                 //Debug.Log("fast recall");
+                recordObj.SetActive(false);
                 TBController.Instance.RecallAllFast();
             }
         }
@@ -123,8 +128,8 @@ public class TBManager : MonoBehaviour
         else if(Input.GetKeyDown(KeyCode.Tab))
         {
             Player.Instance.Rebirth();
-            Player.Instance.transform.position = flashLight.transform.position;
-            Player.Instance.transform.rotation = flashLight.transform.rotation;
+            //Player.Instance.transform.position = flashLight.transform.position;
+            //Player.Instance.transform.rotation = flashLight.transform.rotation;
         }
     }
     private void FixedUpdate()
@@ -165,7 +170,7 @@ public class TBManager : MonoBehaviour
     private void BackToNormal()
     {
         //Debug.Log("Manager back to normal");
-        TBController.Instance.ChooseToNormal();
+        TBController.Instance.BackToNormal();
     }
     private void BackToNormal_Flash()
     {
@@ -208,5 +213,13 @@ public class TBManager : MonoBehaviour
                 Debug.Log("dont have the ability!");
                 break;
         }
+    }
+
+    public void PlayerRebirth()
+    {
+        TBController.Instance.BackToNormal();
+        TBController.Instance.NormalToFlash();
+        RestartFlashUpdate();
+        coldTimer.Restart();
     }
 }
