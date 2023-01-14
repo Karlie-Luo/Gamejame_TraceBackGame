@@ -5,11 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class SceneSwitch : MonoBehaviour
 {
-    private void OnCollisionEnter2D(Collision2D collision)
+    public GameObject sceneFadeInOut;
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            SceneFadeInOut.sceneEnding = true;            
+            sceneFadeInOut.GetComponentInChildren<SceneFadeInOut>().NextScene();
         }
     }
 }

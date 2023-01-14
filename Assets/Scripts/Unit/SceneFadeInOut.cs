@@ -11,6 +11,7 @@ public class SceneFadeInOut : MonoBehaviour
     public static bool sceneEnding = false;
     private RawImage rawImage;
     public static bool sceneReloading = false;
+    private float changeTime = 0f;
     
     void Awake()
     {
@@ -30,25 +31,25 @@ public class SceneFadeInOut : MonoBehaviour
 
         if (sceneEnding)
         {
-            Debug.Log("end scene");
+            Debug.Log($"end scene:{rawImage.color.a}");
             EndScene();
         }
     }
 
     private void FadeToClear()
     {
-        rawImage.color = Color.Lerp(rawImage.color, Color.clear, fadeSpeed * Time.deltaTime);
+       rawImage.color = Color.Lerp(rawImage.color, Color.clear, 0.06f);
     }
 
     private void FadeToBlack()
     {
-        rawImage.color = Color.Lerp(rawImage.color, Color.black, fadeSpeed * Time.deltaTime);
+       rawImage.color = Color.Lerp(rawImage.color, Color.black, 0.06f);
     }
 
     void StartScene()
     {
         FadeToClear();
-        if (rawImage.color.a < 0.05f)
+        if (rawImage.color.a < 0.1f)
         {
             rawImage.color = Color.clear;
             rawImage.enabled = false;
@@ -60,7 +61,7 @@ public class SceneFadeInOut : MonoBehaviour
     {
         rawImage.enabled = true;
         FadeToBlack();
-        if (rawImage.color.a > 0.95f)
+        if (rawImage.color.a > 0.9f)
         {
             sceneEnding = false;
             if(sceneReloading)

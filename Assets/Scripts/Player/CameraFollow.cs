@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    public Transform target;
+    private Transform target;
     public float smoothing;
 
     public Vector2 minPosition;
@@ -12,6 +12,10 @@ public class CameraFollow : MonoBehaviour
 
     // Start is called before the first frame update
 
+    public void Start()
+    {
+        target = Player.Instance.transform;
+    }
 
     private void FixedUpdate()
     {
