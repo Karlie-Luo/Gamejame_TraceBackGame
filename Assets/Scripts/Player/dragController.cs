@@ -5,15 +5,13 @@ using UnityEngine;
 public class dragController : MonoBehaviour
 {
 
+    public float decreasedPushSpeed;
+    public float decreasedDragSpeed;
+    public float formerSpeed;
     bool dragPressed = false;
     // Update is called once per frame
     GameObject dragObj = null;
-    private float distance;
-    float x;
-    private void Start()
-    {
-        x = this.transform.position.x;
-    }
+    private Vector3 distance;
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.J))
@@ -28,10 +26,23 @@ public class dragController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (dragObj != null&&dragPressed)
+        Debug.Log(Player.instance.speed);
+        if (dragObj != null && dragPressed)
         {
             Debug.Log("hahaha");
-            dragObj.transform.position = this.transform.position + new Vector3(distance, 0, 0);
+            dragObj.transform.position = this.transform.position + distance;
+            if (Player.instance.rb.velocity.x * distance.x < 0)
+            {
+                Player.instance.speed = decreasedDragSpeed;
+            }
+            else
+            {
+                Player.instance.speed = decreasedPushSpeed;
+            }
+        }
+        else
+        {
+            Player.instance.speed = formerSpeed;
         }
     }
 
@@ -44,14 +55,14 @@ public class dragController : MonoBehaviour
             if (dragPressed == true)
             {
                 dragObj = collision.gameObject;
-                distance = collision.gameObject.transform.position.x - this.gameObject.transform.position.x;
+                distance = collision.gameObject.transform.position - this.gameObject.transform.position;
                 Debug.Log(dragObj.name);
             }
             else
             {
                 //collision.gameObject.transform.parent = null;
                 dragObj = null;
-                distance = 0;
+                distance = Vector3.zero;
             }
         }
     }

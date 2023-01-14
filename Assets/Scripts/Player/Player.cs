@@ -165,7 +165,6 @@ public class Player : MonoBehaviour
             jumpAudio.Play();
         }
         animt.SetFloat("jumpFall", rb.velocity.y);
-        Debug.Log(rb.velocity.y + " ËÙ¶È");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
