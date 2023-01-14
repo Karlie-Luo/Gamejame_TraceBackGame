@@ -10,8 +10,8 @@ public class Player : MonoBehaviour
     public Collider2D coll;
     public Animation anim;
     public Animator animt;
-    public AudioClip[] audios;
     public AudioSource walkAudio;
+    public AudioSource jumpAudio;
 
     public float jumpForce,speed;
     public Transform groundCheck;
@@ -22,11 +22,12 @@ public class Player : MonoBehaviour
     bool jumpPressed;
     bool jumpContinue;
     public int jumpCount;
-
+    private int movingcount = 0;
     public float jumpDownForce;
 
     bool dragPressed = false;
     bool isTimeStopStart = false;
+    bool isMovingAudioPlaying;
 
     float time;
     float timeStopTime;
@@ -129,8 +130,21 @@ public class Player : MonoBehaviour
 
         if (horizontalMove != 0)
         {
-            walkAudio.Play();
+            if (movingcount==0&&isGround)
+            {
+                walkAudio.Play();
+                movingcount++;
+            }
             transform.localScale = new Vector3(horizontalMove * 5, transform.localScale.y, transform.localScale.z);
+        }
+        else
+        {
+            movingcount = 0;
+            walkAudio.Stop();
+        }
+        if (!isGround)
+        {
+            walkAudio.Stop();
         }
         animt.SetFloat("walk", Mathf.Abs(rb.velocity.x));
     }
@@ -148,6 +162,7 @@ public class Player : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             jumpCount--;
             jumpPressed = false;
+            jumpAudio.Play();
         }
         animt.SetFloat("jumpFall", rb.velocity.y);
         Debug.Log(rb.velocity.y + " ËÙ¶È");
