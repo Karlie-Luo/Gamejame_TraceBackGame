@@ -9,21 +9,27 @@ public class Player : MonoBehaviour
     public Rigidbody2D rb;
     public Collider2D coll;
     public Animation anim;
+    public Animator animt;
+    public AudioSource walkAudio;
+    public AudioSource jumpAudio;
 
     public float jumpForce,speed;
     public Transform groundCheck;
     public LayerMask ground;
 
     public bool isGround, isJump;
-     
+    public bool cannotDrag;
+    
     bool jumpPressed;
     bool jumpContinue;
     public int jumpCount;
-
+    private int movingcount = 0;
     public float jumpDownForce;
+    
 
     bool dragPressed = false;
     bool isTimeStopStart = false;
+    bool isMovingAudioPlaying;
 
     float time;
     float timeStopTime;
@@ -55,6 +61,7 @@ public class Player : MonoBehaviour
             instance = (Player)this;
             DontDestroyOnLoad(this);
         }
+
     }
 
     void Start()
@@ -62,6 +69,9 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<Collider2D>();
         anim = GetComponent<Animation>();
+        animt = GetComponent<Animator>();
+        //audio = GetComponent<AudioSource>();
+        walkAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -80,7 +90,6 @@ public class Player : MonoBehaviour
                 jumpPressed = true;
                 jumpContinue = true;
                 time = Time.time;
-                Debug.Log("aaaaaa");
             }
 
             if (Input.GetKeyUp(KeyCode.Space))
@@ -90,7 +99,7 @@ public class Player : MonoBehaviour
         }
         else 
         {
-            Debug.Log("时停开始");
+  
             timeStopTime += Time.unscaledDeltaTime;
             if (timeStopTime >= 2.0f)
             {
@@ -124,7 +133,6 @@ public class Player : MonoBehaviour
 
     public void TimeStopChecks()
     {
-        Debug.Log("按下时停");
         Time.timeScale = 0;
         timestopsphere.gameObject.SetActive(true);
         timestopsphere.gameObject.transform.position = this.gameObject.transform.position + new Vector3(0, 0, 3);
@@ -137,8 +145,23 @@ public class Player : MonoBehaviour
 
         if (horizontalMove != 0)
         {
-            transform.localScale = new Vector3(horizontalMove, 1, 1);
+            if (movingcount==0&&isGround)
+            {
+                walkAudio.Play();
+                movingcount++;
+            }
+            transform.localScale = new Vector3(horizontalMove * 5, transform.localScale.y, transform.localScale.z);
         }
+        else
+        {
+            movingcount = 0;
+            walkAudio.Stop();
+        }
+        if (!isGround)
+        {
+            walkAudio.Stop();
+        }
+        animt.SetFloat("walk", Mathf.Abs(rb.velocity.x));
     }
 
     void Jump()
@@ -147,20 +170,18 @@ public class Player : MonoBehaviour
         {
             jumpCount = 2;
             isJump = false;
+            cannotDrag = false;
         }
         if (isGround && jumpPressed)
         {
             isJump = true;
+            cannotDrag = true;
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             jumpCount--;
             jumpPressed = false;
+            jumpAudio.Play();
         }
-        //else if (jumpPressed && jumpCount > 0 && isJump)
-        //{
-        //    rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-        //    jumpCount--;
-        //    jumpPressed = false;
-        //}
+        animt.SetFloat("jumpFall", rb.velocity.y);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -168,7 +189,21 @@ public class Player : MonoBehaviour
         if (collision.gameObject.layer == 6)
         {
             isGround = true;
-            Debug.Log("在地面上");
+            animt.SetBool("isGround", true);
+        }
+        else if (collision.gameObject.layer == 3)
+        {
+            Vector2 v = collision.ClosestPoint(this.transform.position);
+            if (v.y < transform.position.y && Mathf.Abs(v.x - transform.position.x) < 0.1)
+            {
+                isGround = true;
+                animt.SetBool("isGround", true);
+
+            }
+        }
+        if (isJump)
+        {
+            rb.velocity = new Vector2(0, rb.velocity.y);
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -176,7 +211,17 @@ public class Player : MonoBehaviour
         if (collision.gameObject.layer == 6)
         {
             isGround = false;
-            Debug.Log("起飞");
+            animt.SetBool("isGround", false);
+        }
+        else if (collision.gameObject.layer == 3)
+        {
+            Vector2 v = collision.ClosestPoint(this.transform.position);
+            if (v.y < transform.position.y && Mathf.Abs(v.x-transform.position.x)<0.1)
+            {
+                isGround = false;
+                animt.SetBool("isGround", false);
+
+            }
         }
     }
 
