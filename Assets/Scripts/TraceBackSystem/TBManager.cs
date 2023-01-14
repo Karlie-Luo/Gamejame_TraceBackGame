@@ -20,12 +20,15 @@ public class TBManager : MonoBehaviour
         }
     }
 
-    public static TBManager instance;
     private Sequence seq, coldTimer;
     private int counter = 0;
+    private Queue transformQueue = new Queue();
+
     public GameObject flashLight;
-    public Queue transformQueue = new Queue();
-    public AbilityState abilityState = new AbilityState(false,false,false);
+    public GameObject recordObj;
+    public AbilityState abilityState = new AbilityState(true, true, true);
+
+    public static TBManager instance;
     public static TBManager Instance
     {
         get { return instance; }
@@ -86,7 +89,9 @@ public class TBManager : MonoBehaviour
                 {
                     seq.Pause<Sequence>();
                 }
-                TBController.Instance.ChooseOne();
+                Debug.Log("record Pos");
+                recordObj.SetActive(true);
+                recordObj.transform.position = TBController.Instance.ChooseOne().transform.position;
             }
         }
         else if (Input.GetKeyDown(KeyCode.LeftControl) && abilityState.slowRecall == true)
@@ -94,6 +99,7 @@ public class TBManager : MonoBehaviour
             if (TBController.Instance.CurrentState == TBController.TBState.Record)
             {
                 //Debug.Log("slow recall");
+                recordObj.SetActive(false);
                 TBController.Instance.RecallAllSlow();
             }
         }
@@ -102,6 +108,7 @@ public class TBManager : MonoBehaviour
             if (TBController.Instance.CurrentState == TBController.TBState.Record)
             {
                 //Debug.Log("fast recall");
+                recordObj.SetActive(false);
                 TBController.Instance.RecallAllFast();
             }
         }
@@ -208,7 +215,7 @@ public class TBManager : MonoBehaviour
         }
     }
 
-    public void PlayerRebirth_Flash()
+    public void PlayerRebirth()
     {
         TBController.Instance.BackToNormal();
         TBController.Instance.NormalToFlash();
