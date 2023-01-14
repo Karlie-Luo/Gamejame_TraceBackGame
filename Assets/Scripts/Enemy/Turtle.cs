@@ -109,7 +109,10 @@ public class Turtle : MonoBehaviour
                 transform.localRotation = Quaternion.Euler(0, 0, 0);
             }
         }
-        
+        if (collision.gameObject.tag == "Bullet")
+        {
+            EnemyDie();
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

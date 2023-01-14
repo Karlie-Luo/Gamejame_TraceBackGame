@@ -89,6 +89,13 @@ public class Bee : MonoBehaviour
             }
         }
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Bullet")
+        {
+            EnemyDie();
+        }
+    }
     private void EnemyDie()
     {
         animator.SetTrigger("die");

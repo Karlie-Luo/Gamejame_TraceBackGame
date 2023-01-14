@@ -143,6 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b63de6cc1988f5e4a885f8324b1cedcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BombCollider: {fileID: 3663912899846019526, guid: e7e7a3167aa22984aab7f201ce7ac4fa, type: 3}
   alertDistance: 4
   patrolDistance: 2
 --- !u!60 &8390889376478195102
@@ -180,4 +181,5 @@ PolygonCollider2D:
       - {x: 0.623896, y: -0.14530522}
       - {x: 0.79551697, y: -0.048487455}
       - {x: 0.7663666, y: 0.026063845}
+      - {x: 0.5661294, y: 0.090789974}
       - {x: 0.12, y: 0.235}

@@ -14,6 +14,7 @@ public class Skull : MonoBehaviour
     private float startPosX;
     private float startPosY;
     private bool isBomb = false;
+    public GameObject BombCollider;
     public float alertDistance;
     public float patrolDistance;
     // Start is called before the first frame update
@@ -110,15 +111,15 @@ public class Skull : MonoBehaviour
         if (distance < 1f && !isBomb)
         {
             isBomb = true;
-            animator.SetBool("attack",true);
-            Invoke("EnemyBomb", 0.56f);
-            Invoke("EnemyDie", 1.3f);
+            Invoke("EnemyBomb", 1.3f);
+            Invoke("EnemyDie", 3f);
         }
     }
 
     private void EnemyBomb()
     {
-        explosionCollider.enabled = true;
+        animator.SetBool("attack", true);
+        Instantiate(BombCollider, transform.position, Quaternion.Euler(0f, 0f, 0f));
     }
     private void EnemyDie()
     {
