@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -4648246622298843149}
   - component: {fileID: 2734270921236919083}
   - component: {fileID: -523891383730830422}
+  - component: {fileID: 5847216719600759868}
   m_Layer: 0
   m_Name: PlantBullet
   m_TagString: Bullet
@@ -136,3 +137,16 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!114 &5847216719600759868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 593467913941197095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 444c73ec70ab85748b881b1de45bf378, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  locked: 1

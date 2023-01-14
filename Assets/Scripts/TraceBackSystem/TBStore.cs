@@ -87,6 +87,7 @@ public class TBStore : MonoBehaviour
     public virtual void TimeStoreFastOver()
     {
         steps.Clear();
+        //快回溯速度调节
         this.gameObject.GetComponent<Rigidbody2D>().velocity *= -2;
         TBController.Instance.OnRecallEndEvent -= TimeStoreFastOver;
         TBController.Instance.OnRecallFastEvent -= RecallTickFast;
@@ -106,12 +107,10 @@ public class TBStore : MonoBehaviour
     /// </summary>
     public virtual void RecordTick()
     {
-
         TransformStep newStep = new TransformStep();
         newStep.position = transform.position;
         newStep.rotation = transform.rotation;
         steps.Push(newStep);
-
     }
     /// <summary>
     /// 回溯时刻

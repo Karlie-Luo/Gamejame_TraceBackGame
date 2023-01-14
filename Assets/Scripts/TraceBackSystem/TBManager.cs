@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Kurisu.TimeControl;
+using UnityEngine.EventSystems;
 
 public class TBManager : MonoBehaviour
 {
@@ -74,7 +75,8 @@ public class TBManager : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && (abilityState.fastRecall == true || abilityState.slowRecall == true))
+        if (Input.GetMouseButtonDown(0) && (abilityState.fastRecall == true || abilityState.slowRecall == true)
+            && EventSystem.current.IsPointerOverGameObject() == false)
         {
             if (TBController.Instance.CurrentState == TBController.TBState.Normal)
             {
@@ -161,7 +163,7 @@ public class TBManager : MonoBehaviour
     private void InitColdTimer()
     {
         Debug.Log("Init coldTimer");
-        coldTimer.AppendInterval(5);
+        coldTimer.AppendInterval(4);
         coldTimer.AppendCallback(BackToNormal_Flash);
         coldTimer.SetAutoKill(false);
         coldTimer.SetUpdate(true);
@@ -212,6 +214,22 @@ public class TBManager : MonoBehaviour
             default:
                 Debug.Log("dont have the ability!");
                 break;
+        }
+    }
+
+    public bool GetActiveAbility(int num)
+    {
+        switch (num)
+        {
+            case 0:
+                return abilityState.fastRecall;
+            case 1:
+                return abilityState.slowRecall;
+            case 2:
+                return abilityState.flash;
+            default:
+                Debug.Log("dont have the ability!");
+                return false;
         }
     }
 
