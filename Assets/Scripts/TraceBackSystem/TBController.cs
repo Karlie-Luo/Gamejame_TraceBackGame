@@ -168,7 +168,7 @@ public class TBController : MonoBehaviour
             return null;
         }
     }
-    public void ChooseToNormal()
+    public void BackToNormal()
     {
         Debug.Log("Controller Back to normal");
         UpdateState(TBState.Normal);

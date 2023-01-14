@@ -31,6 +31,13 @@ public class Player : MonoBehaviour
     public GameObject sceneFadeInOut;
     public GameObject timestopsphere;
 
+    public SpriteRenderer renderer;
+    private float maxBlinkTime = 0.5f;
+    private float blinkTime = 0f;
+    public bool playerDeath = false;
+    public bool afterBlink = false;
+    private int blinkCount = 0;
+
     public static Player instance;
     public static Player Instance
     {
@@ -60,6 +67,12 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(playerDeath)
+        {
+            Debug.Log("doblink");
+            DoBlink();
+            return;
+        }
         if (!isTimeStopStart)
         {
             if (Input.GetKeyDown(KeyCode.Space) && jumpCount > 0)
@@ -177,6 +190,26 @@ public class Player : MonoBehaviour
     public void Rebirth()
     {
         Debug.Log("Rebirth");
-        sceneFadeInOut.GetComponentInChildren<SceneFadeInOut>().ReloadEffect();
+        playerDeath = true;
+        //sceneFadeInOut.GetComponentInChildren<SceneFadeInOut>().ReloadEffect();
     } 
+
+    public void DoBlink()
+    {
+        blinkTime += Time.deltaTime;
+        blinkCount++;
+        if(blinkTime >= maxBlinkTime)
+        {
+            blinkTime = 0f;
+            renderer.enabled = true;
+            playerDeath = false;
+            afterBlink = true;
+            return;
+        }
+        if(blinkCount >= 10)
+        {
+            blinkCount = 0;
+            renderer.enabled = !renderer.enabled;
+        }
+    }
 }

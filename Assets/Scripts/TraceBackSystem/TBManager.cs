@@ -82,8 +82,6 @@ public class TBManager : MonoBehaviour
             }
             else if (TBController.Instance.CurrentState == TBController.TBState.Choose)
             {
-                //Ð­³Ì
-                //Ê±Í£
                 if (seq.IsPlaying())
                 {
                     seq.Pause<Sequence>();
@@ -123,8 +121,8 @@ public class TBManager : MonoBehaviour
         else if(Input.GetKeyDown(KeyCode.Tab))
         {
             Player.Instance.Rebirth();
-            Player.Instance.transform.position = flashLight.transform.position;
-            Player.Instance.transform.rotation = flashLight.transform.rotation;
+            //Player.Instance.transform.position = flashLight.transform.position;
+            //Player.Instance.transform.rotation = flashLight.transform.rotation;
         }
     }
     private void FixedUpdate()
@@ -165,7 +163,7 @@ public class TBManager : MonoBehaviour
     private void BackToNormal()
     {
         //Debug.Log("Manager back to normal");
-        TBController.Instance.ChooseToNormal();
+        TBController.Instance.BackToNormal();
     }
     private void BackToNormal_Flash()
     {
@@ -208,5 +206,13 @@ public class TBManager : MonoBehaviour
                 Debug.Log("dont have the ability!");
                 break;
         }
+    }
+
+    public void PlayerRebirth_Flash()
+    {
+        TBController.Instance.BackToNormal();
+        TBController.Instance.NormalToFlash();
+        RestartFlashUpdate();
+        coldTimer.Restart();
     }
 }
