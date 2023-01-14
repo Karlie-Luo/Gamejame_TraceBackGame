@@ -27,11 +27,11 @@ public class TBStore : MonoBehaviour
         if (TBController.IsInitialized)
         {
             TBController.Instance.Remove(this);
-            TBController.Instance.OnRecallEndEvent -= TimeStoreOver;
+            TBController.Instance.OnRecallEndEvent -= TimeStoreFastOver;
+            TBController.Instance.OnRecallEndEvent -= TimeStoreSlowOver;
             TBController.Instance.OnRecallFastEvent -= RecallTickFast;
             TBController.Instance.OnRecallSlowEvent -= RecallTickSlow;
             TBController.Instance.OnRecordEvent -= RecordTick;
-
         }
         steps.Clear();
     }
@@ -63,7 +63,7 @@ public class TBStore : MonoBehaviour
         if (locked)
             return;
         TBController.Instance.OnRecallFastEvent += RecallTickFast;
-        TBController.Instance.OnRecallEndEvent += TimeStoreOver;
+        TBController.Instance.OnRecallEndEvent += TimeStoreFastOver;
     }
     public virtual void RecallSlow()
     {
@@ -71,27 +71,36 @@ public class TBStore : MonoBehaviour
         if (locked)
             return;
         TBController.Instance.OnRecallSlowEvent += RecallTickSlow;
-        TBController.Instance.OnRecallEndEvent += TimeStoreOver;
+        TBController.Instance.OnRecallEndEvent += TimeStoreSlowOver;
     }
 
     /// <summary>
     /// 终止回溯和记录
     /// </summary>
-    public virtual void TimeStoreOver()
+    public virtual void TimeStoreSlowOver()
     {
         steps.Clear();
-        TBController.Instance.OnRecallEndEvent -= TimeStoreOver;
+        TBController.Instance.OnRecallEndEvent -= TimeStoreSlowOver;
+        TBController.Instance.OnRecallSlowEvent -= RecallTickSlow;
+        TBController.Instance.OnRecordEvent -= RecordTick;
+    }
+    public virtual void TimeStoreFastOver()
+    {
+        steps.Clear();
+        this.gameObject.GetComponent<Rigidbody2D>().velocity *= -2;
+        TBController.Instance.OnRecallEndEvent -= TimeStoreFastOver;
         TBController.Instance.OnRecallFastEvent -= RecallTickFast;
         TBController.Instance.OnRecallSlowEvent -= RecallTickSlow;
         TBController.Instance.OnRecordEvent -= RecordTick;
     }
+
     /// <summary>
     /// 强制关闭回溯器
     /// </summary>
-    public virtual void ShutDown()
+    /*public virtual void ShutDown()
     {
-        TimeStoreOver();
-    }
+        TimeStoreSlowOver();
+    }*/
     /// <summary>
     /// 记录时刻
     /// </summary>

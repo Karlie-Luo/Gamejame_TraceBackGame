@@ -224,7 +224,7 @@ public class TBController : MonoBehaviour
     /// <summary>
     /// 强制关闭所有回溯器
     /// </summary>
-    public void ShutdownAll()
+    /*public void ShutdownAll()
     {
         state = TBState.Normal;
         currentCount = 0;
@@ -232,7 +232,7 @@ public class TBController : MonoBehaviour
         {
             store.ShutDown();
         }
-    }
+    }*/
     private void Update()
     {
         if (!useFixedUpdate)
