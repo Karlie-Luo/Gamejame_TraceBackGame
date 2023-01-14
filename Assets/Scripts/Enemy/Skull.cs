@@ -76,7 +76,7 @@ public class Skull : MonoBehaviour
             if (Player.Instance.transform.position.x < transform.position.x)
             {
                 dirX = -1;
-                if((transform.position.x - GameObject.Find("Player").transform.position.x) > 0.5f)
+                if((transform.position.x - Player.Instance.transform.position.x) > 0.5f)
                 {
                     transform.localRotation = Quaternion.Euler(0, 180, 0);
                 }                
