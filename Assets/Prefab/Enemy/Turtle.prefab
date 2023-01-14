@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6684183221856972057}
   - component: {fileID: 6684183221856972060}
   - component: {fileID: -593299249532941825}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Turtle
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -208,3 +208,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   alertDistance: 5
   patrolDistance: 2
+  dieSpeed: 0
