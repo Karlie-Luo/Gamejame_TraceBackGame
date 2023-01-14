@@ -33,7 +33,7 @@ public class Plant : MonoBehaviour
     {
         float distance = Mathf.Abs(GameObject.Find("Player").transform.position.x - transform.position.x);
         bool isSameHeight = false;
-        if (Mathf.Abs(GameObject.Find("Player").transform.position.y - transform.position.y) <= 0.5f)
+        if (Mathf.Abs(GameObject.Find("Player").transform.position.y - transform.position.y) <= 3f)
         {
             isSameHeight = true;
         }
