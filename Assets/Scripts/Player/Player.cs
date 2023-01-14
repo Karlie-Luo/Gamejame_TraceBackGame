@@ -101,7 +101,7 @@ public class Player : MonoBehaviour
         {
   
             timeStopTime += Time.unscaledDeltaTime;
-            if (timeStopTime >= 2.0f)
+            if (timeStopTime >= 2.5f)
             {
 
                 Time.timeScale = 1;
@@ -133,7 +133,7 @@ public class Player : MonoBehaviour
 
     public void TimeStopChecks()
     {
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
         timestopsphere.gameObject.SetActive(true);
         timestopsphere.gameObject.transform.position = this.gameObject.transform.position + new Vector3(0, 0, 3);
         isTimeStopStart = true;

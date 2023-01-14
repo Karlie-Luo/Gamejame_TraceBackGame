@@ -7,6 +7,7 @@ using Kurisu.TimeControl;
 
 public class TBController : MonoBehaviour
 {
+    public TimeStopSphere timeStopSphere;
     public enum TBState
     {
         Normal,
@@ -141,7 +142,6 @@ public class TBController : MonoBehaviour
     public GameObject ChooseOne()
     {
         GameObject obj = GetTBObject();
-        Debug.Log("get obj : " + obj);
         if(obj != null)
         {
             TBStore timeStore = obj.GetComponent<TBStore>();
@@ -159,6 +159,7 @@ public class TBController : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
         if (hit.collider)
         {
+            timeStopSphere.isChoosen = true;
             //do something
             Debug.Log(hit.collider.gameObject.name);
             return hit.collider.gameObject;

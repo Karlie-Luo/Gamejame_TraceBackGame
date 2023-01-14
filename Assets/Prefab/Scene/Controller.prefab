@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe14233a241927d40b11b9a2f2b007d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeStopSphere: {fileID: 0}
   stores: []
   state: 0
   capacity: 3000
