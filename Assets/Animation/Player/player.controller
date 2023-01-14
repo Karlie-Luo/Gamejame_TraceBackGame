@@ -111,6 +111,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 3
     m_ConditionEvent: jumpFall
     m_EventTreshold: 1
+  - m_ConditionMode: 2
+    m_ConditionEvent: isGround
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -4952425527710713593}
   m_Solo: 0
