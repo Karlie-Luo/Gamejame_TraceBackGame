@@ -13,6 +13,7 @@ public class Turtle : MonoBehaviour
     public float alertDistance;
     public float patrolDistance;
     public float dieSpeed;
+    public AudioSource dieAudio;
     void Start()
     {
         spikesOutCollider = GetComponent<PolygonCollider2D>();
@@ -129,6 +130,7 @@ public class Turtle : MonoBehaviour
     }
     private void EnemyDie()
     {
+        dieAudio.Play();
         animator.SetTrigger("die");
         transform.position = new Vector2(transform.position.x, transform.position.y - 0.05f);
         isDie = true;
