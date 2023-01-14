@@ -101,6 +101,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        Debug.Log(isJump);
         if (!isTimeStopStart)
         {
             //isGround = Physics2D.OverlapCircle(groundCheck.position, 0.01f, ground);
@@ -133,7 +134,6 @@ public class Player : MonoBehaviour
         {
             if (movingcount==0&&isGround)
             {
-                Debug.Log(walkAudio.name);
                 walkAudio.Play();
                 movingcount++;
             }
@@ -176,6 +176,10 @@ public class Player : MonoBehaviour
             isGround = true;
 
             animt.SetBool("isGround", true);
+        }
+        if (isJump)
+        {
+            rb.velocity = new Vector2(0, rb.velocity.y);
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
