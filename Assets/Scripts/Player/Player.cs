@@ -181,7 +181,7 @@ public class Player : MonoBehaviour
         else if (collision.gameObject.layer == 3)
         {
             Vector2 v = collision.ClosestPoint(this.transform.position);
-            if (v.y < transform.position.y &&v.x == transform.position.x)
+            if (v.y < transform.position.y && Mathf.Abs(v.x - transform.position.x) < 0.1)
             {
                 isGround = true;
                 animt.SetBool("isGround", true);
@@ -203,7 +203,7 @@ public class Player : MonoBehaviour
         else if (collision.gameObject.layer == 3)
         {
             Vector2 v = collision.ClosestPoint(this.transform.position);
-            if (v.y < transform.position.y && v.x == transform.position.x)
+            if (v.y < transform.position.y && Mathf.Abs(v.x-transform.position.x)<0.1)
             {
                 isGround = false;
                 animt.SetBool("isGround", false);
