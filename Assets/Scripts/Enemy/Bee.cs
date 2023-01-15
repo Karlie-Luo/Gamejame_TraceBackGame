@@ -76,7 +76,9 @@ public class Bee : MonoBehaviour
     private void Fire()
     {
         Vector2 bulletPosition = new Vector2(transform.position.x, transform.position.y - 1.0f);
-        Instantiate(bullet, bulletPosition, Quaternion.Euler(0, 0, 0));
+        GameObject obj = Instantiate(bullet, bulletPosition, Quaternion.Euler(0, 0, 0));
+        TBStoreList tBStoreList = GameObject.Find("TBStoreList").GetComponent<TBStoreList>();
+        tBStoreList.gameObjects.Add(obj);
         shootAudio.Play();
     }
     private void OnTriggerEnter2D(Collider2D collision)
