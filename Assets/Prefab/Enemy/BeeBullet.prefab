@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3518175509560601265}
   - component: {fileID: 4270057736871706994}
   - component: {fileID: 6580583230435037662}
+  - component: {fileID: 8795705082599851233}
   m_Layer: 0
   m_Name: BeeBullet
   m_TagString: Bullet
@@ -156,3 +157,16 @@ PolygonCollider2D:
       - {x: 0.022304025, y: -0.031195804}
       - {x: 0.04010573, y: -0.0026044697}
       - {x: 0.038935468, y: 0.0188699}
+--- !u!114 &8795705082599851233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3518175509560601264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 444c73ec70ab85748b881b1de45bf378, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  locked: 0
