@@ -158,7 +158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8087ca72e1ba4e54bba6e21022b6cfe8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 3
+  type: 2
 --- !u!114 &-5330420180156928131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,7 +185,7 @@ PrefabInstance:
       objectReference: {fileID: 1267846888}
     - target: {fileID: 1336227592579912460, guid: a3f9022f93aaff4439650c29c1d58df8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ChangeAbilityDialog_2
+      value: ChangeAbilityDialog_1
       objectReference: {fileID: 0}
     - target: {fileID: 4218687243378557288, guid: a3f9022f93aaff4439650c29c1d58df8, type: 3}
       propertyPath: m_Name
