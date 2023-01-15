@@ -132242,6 +132242,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 277183145948428875, guid: 1ea40d3ba5d2a7d47bf345eaf5b10eb5, type: 3}
+      propertyPath: m_Constraints
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 277183145948428876, guid: 1ea40d3ba5d2a7d47bf345eaf5b10eb5, type: 3}
       propertyPath: m_Name
       value: Box
