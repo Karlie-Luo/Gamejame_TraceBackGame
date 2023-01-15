@@ -33,7 +33,6 @@ public class Player : MonoBehaviour
     float time;
     float timeStopTime;
 
-    public GameObject sceneFadeInOut;
     public GameObject timestopsphere;
 
     private SpriteRenderer renderer;
@@ -77,10 +76,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(isGround);
         if(playerDeath)
         {
-            Debug.Log("doblink");
             DoBlink();
             return;
         }
