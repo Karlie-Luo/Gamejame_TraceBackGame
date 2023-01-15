@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     public Animator animt;
     public AudioSource walkAudio;
     public AudioSource jumpAudio;
+    public AudioSource Zawaluduo;
 
     public float jumpForce,speed;
     public Transform groundCheck;
@@ -142,6 +143,7 @@ public class Player : MonoBehaviour
         timestopsphere.gameObject.SetActive(true);
         timestopsphere.gameObject.transform.position = this.gameObject.transform.position + new Vector3(0, 0, 3);
         isTimeStopStart = true;
+        Zawaluduo.Play();
     }
     void GroundMove()
     {
