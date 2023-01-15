@@ -142,14 +142,15 @@ public class TBController : MonoBehaviour
     {
         GameObject obj = GetTBObject();
         Debug.Log("get obj : " + obj);
-        if(obj != null)
+        if(obj == null)
         {
-            TBStore timeStore = obj.GetComponent<TBStore>();
-            if (timeStore != null)
-            {
-                Debug.Log("get timestore");
-                timeStore.LockTimeStore(false);
-            }
+            return null;
+        }
+        TBStore timeStore = obj.GetComponent<TBStore>();
+        if (timeStore != null)
+        {
+            Debug.Log("get timestore");
+            timeStore.LockTimeStore(false);
         }
         RecordAll();
         return obj;

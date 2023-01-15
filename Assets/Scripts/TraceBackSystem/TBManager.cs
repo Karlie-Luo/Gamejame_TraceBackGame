@@ -87,13 +87,17 @@ public class TBManager : MonoBehaviour
             }
             else if (TBController.Instance.CurrentState == TBController.TBState.Choose)
             {
+                GameObject obj = TBController.Instance.ChooseOne();
+                if(obj == null)
+                {
+                    return;
+                }
+                recordObj.transform.position = obj.transform.position;
+                recordObj.SetActive(true);
                 if (seq.IsPlaying())
                 {
                     seq.Pause<Sequence>();
                 }
-                Debug.Log("record Pos");
-                recordObj.SetActive(true);
-                recordObj.transform.position = TBController.Instance.ChooseOne().transform.position;
             }
         }
         else if (Input.GetKeyDown(KeyCode.LeftControl) && abilityState.slowRecall == true)
