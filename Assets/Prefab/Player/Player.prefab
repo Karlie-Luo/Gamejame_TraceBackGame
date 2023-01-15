@@ -169,7 +169,7 @@ MonoBehaviour:
   isBox: 0
   cannotDrag: 0
   jumpCount: 0
-  jumpDownForce: 100
+  jumpDownForce: 0
   sceneFadeInOut: {fileID: 0}
   timestopsphere: {fileID: 7221192996158559094}
   playerDeath: 0

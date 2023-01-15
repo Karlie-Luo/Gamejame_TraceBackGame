@@ -30,8 +30,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 593467913941197095}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.49054, y: 1.7874, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 1}
+  m_LocalPosition: {x: 17.5445, y: 1.7356, z: 0}
+  m_LocalScale: {x: 4.6744, y: 4.6472, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -99,8 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e4cef360bf47c340b48b36e88ec2c26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  maxDistance: 40
+  speed: 3
+  maxDistance: 80
 --- !u!58 &2734270921236919083
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -114,9 +114,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0004019042, y: 0}
+  m_Offset: {x: 0.00255958, y: 0}
   serializedVersion: 2
-  m_Radius: 0.035258383
+  m_Radius: 0.037416063
 --- !u!50 &-523891383730830422
 Rigidbody2D:
   serializedVersion: 4

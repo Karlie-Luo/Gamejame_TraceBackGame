@@ -10,6 +10,10 @@ public class TBStoreList : MonoBehaviour
     {
         foreach (GameObject obj in gameObjects)
         {
+            if(obj == null)
+            {
+                continue;
+            }
             obj.GetComponent<Highlighter>().ConstantOff();
         }
     }
@@ -19,6 +23,10 @@ public class TBStoreList : MonoBehaviour
         foreach (GameObject obj in gameObjects)
         {
             Debug.Log("CanBeChosen");
+            if (obj == null)
+            {
+                continue;
+            }
             obj.GetComponent<Highlighter>().ConstantOn(Color.red);
         }
     }
