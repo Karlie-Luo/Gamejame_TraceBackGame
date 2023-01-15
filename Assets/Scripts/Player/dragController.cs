@@ -30,8 +30,6 @@ public class dragController : MonoBehaviour
     {
         if (dragObj != null && dragPressed&&!Player.instance.cannotDrag)
         {
-            Debug.Log("玩家位置" + this.transform.position.x+" distance"+distance.x);
-            
             dragObj.transform.position = this.transform.position + distance;
             Debug.Log("物体位置"+dragObj.transform.position.x);
             if (Player.instance.rb.velocity.x * distance.x < 0)
@@ -47,19 +45,21 @@ public class dragController : MonoBehaviour
         {
             Player.instance.speed = formerSpeed;
         }
+        if (!Player.instance.isGround)
+        {
+            dragObj = null;
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.gameObject.layer==3)
+        if(collision.gameObject.layer==3&& Player.instance.isGround)
         {
-            if (dragPressed == true&&Player.instance.isGround&&count == 0)
+            if (dragPressed == true&&Player.instance.isGround&&count == 0&&!Player.instance.isBox)
             {
                 count++;
                 dragObj = collision.gameObject;
                 distance = collision.gameObject.transform.position - this.gameObject.transform.position;
-                Debug.Log(dragObj.name);
-                Debug.Log("dddd");
             }
             else if(!dragPressed||!Player.instance.isGround)
             {
@@ -70,13 +70,4 @@ public class dragController : MonoBehaviour
             }
         }
     }
-    //private void OnTriggerExit2D(Collider2D collision)
-    //{
-    //    if (collision.gameObject.layer == 3)
-    //    {
-    //        dragObj = null;
-    //        distance = Vector3.zero;
-    //    }
-    //}
-
 }

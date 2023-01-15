@@ -17,9 +17,8 @@ public class Player : MonoBehaviour
     public Transform groundCheck;
     public LayerMask ground;
 
-    public bool isGround, isJump;
+    public bool isGround, isJump,isBox;
     public bool cannotDrag;
-    
     bool jumpPressed;
     bool jumpContinue;
     public int jumpCount;
@@ -195,20 +194,35 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.layer == 6 || collision.gameObject.layer == 3)
         {
-            ColliderTest(true, collision);
+            if (collision.gameObject.CompareTag("Box"))
+            {
+                ColliderTest(true, collision, true);
+            }
+            else
+            { 
+                ColliderTest(true, collision,false);
+            }
         }
         if (isJump)
         {
             rb.velocity = new Vector2(0, rb.velocity.y);
         }
     }
+
+
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == 6||collision.gameObject.layer ==3)
+        if (collision.gameObject.layer == 6 || collision.gameObject.layer == 3)
         {
-            ColliderTest(false, collision);
+            if (collision.gameObject.CompareTag("Box"))
+            {
+                ColliderTest(false, collision, false);
+            }
+            else
+            {
+                ColliderTest(false, collision, true);
+            }
         }
-
     }
 
     public TransformStep GetTransfomStep()
@@ -220,9 +234,7 @@ public class Player : MonoBehaviour
     }
     public void Rebirth()
     {
-        Debug.Log("Rebirth");
         playerDeath = true;
-        //sceneFadeInOut.GetComponentInChildren<SceneFadeInOut>().ReloadEffect();
     } 
 
     public void DoBlink()
@@ -251,14 +263,16 @@ public class Player : MonoBehaviour
         {
             Rebirth();
         }
+
     }
 
-    private void ColliderTest(bool Ground,Collider2D collision)
+    private void ColliderTest(bool Ground,Collider2D collision,bool Box)
     {
         Vector2 v = collision.ClosestPoint(this.transform.position);
         if (v.y < transform.position.y+2 && Mathf.Abs(v.x - transform.position.x) < 1)
         {
             isGround = Ground;
+            isBox = Box;
             animt.SetBool("isGround", Ground);
         }
     }
