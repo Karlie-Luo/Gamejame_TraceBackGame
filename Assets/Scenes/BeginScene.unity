@@ -1027,7 +1027,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1070594774}
         m_TargetAssemblyTypeName: BeginScene, Assembly-CSharp
-        m_MethodName: onBeginButtonClicked
+        m_MethodName: onPeopleButtonClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

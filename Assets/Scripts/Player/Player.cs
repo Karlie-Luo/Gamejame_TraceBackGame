@@ -78,6 +78,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(isGround);
         if(playerDeath)
         {
             Debug.Log("doblink");
@@ -111,6 +112,10 @@ public class Player : MonoBehaviour
                 isTimeStopStart = false;
                 timeStopTime = 0;
             }
+        }
+        if (Time.timeScale == 0)
+        {
+            walkAudio.Stop();
         }
     }
 
@@ -176,6 +181,7 @@ public class Player : MonoBehaviour
         if (isGround && jumpPressed)
         {
             isJump = true;
+            isGround = false;
             cannotDrag = true;
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             jumpCount--;
@@ -241,7 +247,7 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Bullet" || collision.gameObject.tag == "Bomb")
+        if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Bullet" || collision.gameObject.tag == "Bomb" || collision.gameObject.tag == "skulling")
         {
             Rebirth();
         }
@@ -250,7 +256,7 @@ public class Player : MonoBehaviour
     private void ColliderTest(bool Ground,Collider2D collision)
     {
         Vector2 v = collision.ClosestPoint(this.transform.position);
-        if (v.y < transform.position.y && Mathf.Abs(v.x - transform.position.x) < 0.1)
+        if (v.y < transform.position.y+2 && Mathf.Abs(v.x - transform.position.x) < 1)
         {
             isGround = Ground;
             animt.SetBool("isGround", Ground);
