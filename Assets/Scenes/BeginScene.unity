@@ -695,7 +695,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u6E38\u620F\u540D\u5B57"
+  m_Text: Tack Me Back
 --- !u!222 &1165879112
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -850,7 +850,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7716985387947031227, guid: eb90f65c4a0b0584c896bb5a937671f5, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7716985387947031230, guid: eb90f65c4a0b0584c896bb5a937671f5, type: 3}
       propertyPath: m_SortingOrder
