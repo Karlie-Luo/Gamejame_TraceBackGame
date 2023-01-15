@@ -695,7 +695,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Tack Me Back
+  m_Text: Take Me Back
 --- !u!222 &1165879112
 CanvasRenderer:
   m_ObjectHideFlags: 0
