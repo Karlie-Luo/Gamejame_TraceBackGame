@@ -30,7 +30,7 @@ Transform:
   m_LocalPosition: {x: 1.97, y: -2.08, z: 0}
   m_LocalScale: {x: 1, y: 0.6, z: 1}
   m_Children:
-  - {fileID: 5280468893905143842}
+  - {fileID: 2557524526627663547}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -123,8 +123,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89e7b546f7c6c9e45ba226c306e52637, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Dialog: {fileID: 5280468893905143846}
---- !u!1001 &8344105546520611150
+  Dialog: {fileID: 0}
+--- !u!1001 &1870663676867948503
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -134,10 +134,6 @@ PrefabInstance:
     - target: {fileID: 4218687243378557288, guid: fe3ed8efc86b49e4280627ac4c206e91, type: 3}
       propertyPath: m_Name
       value: PromptDialog
-      objectReference: {fileID: 0}
-    - target: {fileID: 4218687243378557288, guid: fe3ed8efc86b49e4280627ac4c206e91, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4218687243378557292, guid: fe3ed8efc86b49e4280627ac4c206e91, type: 3}
       propertyPath: m_Pivot.x
@@ -225,13 +221,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe3ed8efc86b49e4280627ac4c206e91, type: 3}
---- !u!1 &5280468893905143846 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4218687243378557288, guid: fe3ed8efc86b49e4280627ac4c206e91, type: 3}
-  m_PrefabInstance: {fileID: 8344105546520611150}
-  m_PrefabAsset: {fileID: 0}
---- !u!224 &5280468893905143842 stripped
+--- !u!224 &2557524526627663547 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4218687243378557292, guid: fe3ed8efc86b49e4280627ac4c206e91, type: 3}
-  m_PrefabInstance: {fileID: 8344105546520611150}
+  m_PrefabInstance: {fileID: 1870663676867948503}
   m_PrefabAsset: {fileID: 0}

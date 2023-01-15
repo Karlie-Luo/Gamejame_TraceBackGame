@@ -152,7 +152,7 @@ public class TBManager : MonoBehaviour
 
     private void InitSequence()
     {
-        Debug.Log("init sequence");
+        //Debug.Log("init sequence");
         seq.AppendInterval(2);
         seq.AppendCallback(BackToNormal);
         seq.SetAutoKill(false);
@@ -161,7 +161,7 @@ public class TBManager : MonoBehaviour
 
     private void InitColdTimer()
     {
-        Debug.Log("Init coldTimer");
+        //Debug.Log("Init coldTimer");
         coldTimer.AppendInterval(4);
         coldTimer.AppendCallback(BackToNormal_Flash);
         coldTimer.SetAutoKill(false);
@@ -176,7 +176,7 @@ public class TBManager : MonoBehaviour
     }
     private void BackToNormal_Flash()
     {
-        Debug.Log("Manager back to normal - flash");
+        //Debug.Log("Manager back to normal - flash");
         TBController.Instance.FlashToNormal();
     }
     
@@ -189,7 +189,7 @@ public class TBManager : MonoBehaviour
 
     public void RestartFlashUpdate()
     {
-        Debug.Log("RestartFlashUpdate");
+        //Debug.Log("RestartFlashUpdate");
         if (flashLight.activeSelf == true)
         {
             flashLight.SetActive(false);
