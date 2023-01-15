@@ -26,7 +26,7 @@ public class OtherDialog : MonoBehaviour
 
     public void Start()
     {
-        text = this.gameObject.GetComponentInChildren<Text>();
+        text = this.gameObject.transform.GetChild(0).GetComponentInChildren<Text>();
 
         InitDialog();
 
@@ -71,47 +71,47 @@ public class OtherDialog : MonoBehaviour
 
     public void ChangeAbilityDialog_1()
     {
-        text.text = AbilityDialog_1[abilityCount_1];
-        if (abilityCount_1 >= AbilityDialog_1.Count - 1)
+        if (abilityCount_1 >= AbilityDialog_1.Count)
         {
             this.gameObject.SetActive(false);
             return;
         }
         abilityCount_1 ++;
+        text.text = AbilityDialog_1[abilityCount_1];
     }
 
     public void ChangeAbilityDialog_2()
     {
-        
+        if (abilityCount_2 >= AbilityDialog_2.Count)
+        {
+            this.gameObject.SetActive(false);
+            return;
+        }
+        abilityCount_2 ++;
+        text.text = AbilityDialog_2[abilityCount_2];
     }
 
     public void ChangeAbilityDialog_3()
     {
-        
+        if (abilityCount_3 >= AbilityDialog_3.Count)
+        {
+            this.gameObject.SetActive(false);
+            return;
+        }
+        abilityCount_3 ++;
+        text.text = AbilityDialog_3[abilityCount_3];
     }
 
     public void StartDialog(int type)
     {
-        switch(type)
+        text.text = type switch
         {
-            case 0:
-                text.text = StoryDialog_1[0];
-                break;
-            case 1:
-                text.text = StoryDialog_2[0];
-                break;
-            case 2:
-                text.text = AbilityDialog_1[0];
-                break;
-            case 3:
-                text.text = AbilityDialog_2[0];
-                break;
-            case 4:
-                text.text = AbilityDialog_3[0];
-                break;
-            default:
-                text.text = "没啥可说的";
-                break;
-        }
+            0 => StoryDialog_1[0],
+            1 => StoryDialog_2[0],
+            2 => AbilityDialog_1[0],
+            3 => AbilityDialog_2[0],
+            4 => AbilityDialog_3[0],
+            _ => "没啥可说的",
+        };
     }
 }

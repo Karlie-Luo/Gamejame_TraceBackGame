@@ -167,7 +167,6 @@ GameObject:
   - component: {fileID: 4218687243378557295}
   - component: {fileID: 4218687243378557294}
   - component: {fileID: 4218687243378557289}
-  - component: {fileID: 4992552667322073111}
   m_Layer: 5
   m_Name: OtherDialog
   m_TagString: Untagged
@@ -257,19 +256,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 255
---- !u!114 &4992552667322073111
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4218687243378557288}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8087ca72e1ba4e54bba6e21022b6cfe8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  StoryDialog: []
 --- !u!1 &7159698964042544655
 GameObject:
   m_ObjectHideFlags: 0
@@ -390,7 +376,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4992552667322073111}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: OtherDialog, Assembly-CSharp
         m_MethodName: ChangeStoryDialog
         m_Mode: 1

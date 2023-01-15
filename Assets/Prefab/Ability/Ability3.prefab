@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4398816533228289064}
   - component: {fileID: 1267846888}
   m_Layer: 0
-  m_Name: Ability1
+  m_Name: Ability3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 837517196756356485, guid: 80ec710fc453d7f4c8e8d7d89413f521, type: 3}
+  m_Sprite: {fileID: 4138223980208024357, guid: a6b5836ac82bdc54ebd9613dd73a04d6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -97,7 +97,7 @@ Animator:
   m_GameObject: {fileID: 4398816533228289068}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 7c32bfc0f9f37344391815c79bbecd53, type: 2}
+  m_Controller: {fileID: 9100000, guid: 8fd77c33d1e1b0b4ba6ea9b1128e32ef, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -136,7 +136,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.12, y: 0.17}
+    oldSize: {x: 0.14, y: 0.14}
     newSize: {x: 0.14, y: 0.14}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -171,7 +171,7 @@ PrefabInstance:
       objectReference: {fileID: 1267846888}
     - target: {fileID: 1336227592579912460, guid: a3f9022f93aaff4439650c29c1d58df8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ChangeAbilityDialog_2
+      value: ChangeAbilityDialog_3
       objectReference: {fileID: 0}
     - target: {fileID: 4218687243378557288, guid: a3f9022f93aaff4439650c29c1d58df8, type: 3}
       propertyPath: m_Name
@@ -265,12 +265,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4992552667322073111, guid: a3f9022f93aaff4439650c29c1d58df8, type: 3}
-      propertyPath: type
-      value: 3
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4992552667322073111, guid: a3f9022f93aaff4439650c29c1d58df8, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3f9022f93aaff4439650c29c1d58df8, type: 3}
 --- !u!1 &540561588316949728 stripped
 GameObject:
