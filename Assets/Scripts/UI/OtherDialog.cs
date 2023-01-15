@@ -63,6 +63,7 @@ public class OtherDialog : MonoBehaviour
         if (storyCount_1 >= StoryDialog_1.Count - 1)
         {
             this.gameObject.SetActive(false);
+            Time.timeScale = 1;
             return;
         }
         storyCount_1 ++;
@@ -74,6 +75,7 @@ public class OtherDialog : MonoBehaviour
         if (storyCount_2 >= StoryDialog_2.Count - 1)
         {
             this.gameObject.SetActive(false);
+            Time.timeScale = 1;
             return;
         }
         storyCount_2 ++;
@@ -86,6 +88,7 @@ public class OtherDialog : MonoBehaviour
         {
             TBManager.instance.ActiveAbility(0);
             this.gameObject.SetActive(false);
+            Time.timeScale = 1;
             return;
         }
         abilityCount_1 ++;
@@ -98,6 +101,7 @@ public class OtherDialog : MonoBehaviour
         {
             TBManager.instance.ActiveAbility(1);
             this.gameObject.SetActive(false);
+            Time.timeScale = 1;
             return;
         }
         abilityCount_2 ++;
@@ -110,6 +114,7 @@ public class OtherDialog : MonoBehaviour
         {
             TBManager.instance.ActiveAbility(2);
             this.gameObject.SetActive(false);
+            Time.timeScale = 1;
             return;
         }
         abilityCount_3 ++;
@@ -128,4 +133,14 @@ public class OtherDialog : MonoBehaviour
             _ => "没啥可说的",
         };
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            this.gameObject.transform.GetChild(0).gameObject.SetActive(true);
+            Time.timeScale = 0;
+        }
+    }
+
 }
