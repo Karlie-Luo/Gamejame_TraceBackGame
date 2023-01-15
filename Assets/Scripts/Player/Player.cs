@@ -113,6 +113,10 @@ public class Player : MonoBehaviour
                 timeStopTime = 0;
             }
         }
+        if (Time.timeScale == 0)
+        {
+            walkAudio.Stop();
+        }
     }
 
     private void FixedUpdate()
