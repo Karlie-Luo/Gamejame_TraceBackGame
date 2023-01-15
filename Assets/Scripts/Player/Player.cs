@@ -247,7 +247,7 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Bullet" || collision.gameObject.tag == "Bomb")
+        if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Bullet" || collision.gameObject.tag == "Bomb" || collision.gameObject.tag == "skulling")
         {
             Rebirth();
         }
