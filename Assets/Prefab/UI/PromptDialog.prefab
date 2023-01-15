@@ -110,8 +110,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 600, y: 125}
+  m_AnchoredPosition: {x: -3.938, y: 0}
+  m_SizeDelta: {x: 907.876, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4218687242335765266
 CanvasRenderer:
@@ -154,7 +154,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: promptpromptpromptpromptpromptprompt
+  m_Text: "\u5411\u5DE6\u79FB\u52A8\uFF1AA \u5411\u53F3\u79FB\u52A8\uFF1AD\n\u8DF3\u8DC3\uFF1ASpace
+    \u63A8\u62C9\u7269\u4F53\uFF1A\u6309\u4F4FJ"
 --- !u!1 &4218687243378557288
 GameObject:
   m_ObjectHideFlags: 0
