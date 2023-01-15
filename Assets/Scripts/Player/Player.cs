@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
     public GameObject sceneFadeInOut;
     public GameObject timestopsphere;
 
-    public SpriteRenderer renderer;
+    private SpriteRenderer renderer;
     private float maxBlinkTime = 0.5f;
     private float blinkTime = 0f;
     public bool playerDeath = false;
@@ -72,6 +72,7 @@ public class Player : MonoBehaviour
         animt = GetComponent<Animator>();
         //audio = GetComponent<AudioSource>();
         walkAudio = GetComponent<AudioSource>();
+        renderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame

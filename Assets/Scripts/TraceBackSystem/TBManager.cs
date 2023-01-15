@@ -27,7 +27,7 @@ public class TBManager : MonoBehaviour
 
     public GameObject flashLight;
     public GameObject recordObj;
-    public AbilityState abilityState = new AbilityState(true, true, true);
+    public AbilityState abilityState = new AbilityState(true, true, false);
 
     public static TBManager instance;
     public static TBManager Instance
@@ -131,12 +131,6 @@ public class TBManager : MonoBehaviour
                 //Player.Instance.Flash(step);
             }
         }
-        else if(Input.GetKeyDown(KeyCode.Tab))
-        {
-            Player.Instance.Rebirth();
-            //Player.Instance.transform.position = flashLight.transform.position;
-            //Player.Instance.transform.rotation = flashLight.transform.rotation;
-        }
     }
     private void FixedUpdate()
     {
@@ -147,7 +141,7 @@ public class TBManager : MonoBehaviour
         }
         else
         {
-            if(flashLight.activeSelf == false)
+            if(flashLight.activeSelf == false && abilityState.flash == true)
             {
                 flashLight.SetActive(true);
             }

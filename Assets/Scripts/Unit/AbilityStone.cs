@@ -8,7 +8,7 @@ public class AbilityStone : MonoBehaviour
     
     void Start()
     {
-        if(!TBManager.Instance.GetActiveAbility(num))
+        if(TBManager.Instance.GetActiveAbility(num))
         {
             this.gameObject.SetActive(false);
         }
