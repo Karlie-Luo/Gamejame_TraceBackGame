@@ -10,13 +10,13 @@ public class TBManager : MonoBehaviour
 {
     public struct AbilityState
     {
-        public bool fastRecall;
         public bool slowRecall;
+        public bool fastRecall;
         public bool flash;
         public AbilityState(bool value1,bool value2, bool value3)
         {
-            fastRecall = value1;
-            slowRecall = value2;
+            slowRecall = value1;
+            fastRecall = value2;
             flash = value3;
         }
     }
@@ -27,7 +27,7 @@ public class TBManager : MonoBehaviour
 
     public GameObject flashLight;
     public GameObject recordObj;
-    public AbilityState abilityState = new AbilityState(true, true, false);
+    public AbilityState abilityState = new AbilityState(false, false, false);
 
     public static TBManager instance;
     public static TBManager Instance
@@ -201,10 +201,10 @@ public class TBManager : MonoBehaviour
         switch (num)
         {
             case 0:
-                abilityState.fastRecall = true;
+                abilityState.slowRecall = true;
                 break;
             case 1:
-                abilityState.slowRecall = true;
+                abilityState.fastRecall = true;
                 break;
             case 2:
                 abilityState.flash = true;
@@ -220,9 +220,9 @@ public class TBManager : MonoBehaviour
         switch (num)
         {
             case 0:
-                return abilityState.fastRecall;
-            case 1:
                 return abilityState.slowRecall;
+            case 1:
+                return abilityState.fastRecall;
             case 2:
                 return abilityState.flash;
             default:
