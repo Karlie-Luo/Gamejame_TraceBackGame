@@ -65,7 +65,9 @@ public class Plant : MonoBehaviour
             shiftAngle = 180;
         }
         Vector2 bulletPosition = new Vector2(transform.position.x + shiftPos, transform.position.y + 0.4f);
-        Instantiate(bullet, bulletPosition, Quaternion.Euler(0, 0, shiftAngle));
+        GameObject obj = Instantiate(bullet, bulletPosition, Quaternion.Euler(0, 0, shiftAngle));
+        TBStoreList tBStoreList = GameObject.Find("TBStoreList").GetComponent<TBStoreList>();
+        tBStoreList.gameObjects.Add(obj);
     }
     
     private void EnemyDie()
