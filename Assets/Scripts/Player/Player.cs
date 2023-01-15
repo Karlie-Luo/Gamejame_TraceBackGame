@@ -76,10 +76,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-<<<<<<< HEAD
-        //Debug.Log(isGround);
-=======
->>>>>>> lhb
         if(playerDeath)
         {
             DoBlink();
