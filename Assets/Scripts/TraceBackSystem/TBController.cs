@@ -152,6 +152,7 @@ public class TBController : MonoBehaviour
             Debug.Log("get timestore");
             timeStore.LockTimeStore(false);
         }
+        TBManager.Instance.ShowOffObjCanBeChosen();
         RecordAll();
         return obj;
     }
