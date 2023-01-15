@@ -21,10 +21,10 @@ public class TBController : MonoBehaviour
         Normal,
         Flash
     }
-    [LabelText("»ØËÝÆ÷ÁÐ±í"), SerializeField]
+    [LabelText("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½"), SerializeField]
     private List<TBStore> stores = new List<TBStore>();
     private TBStore playerStore;
-    [LabelText("µ±Ç°×´Ì¬"), ReadOnly, SerializeField]
+    [LabelText("ï¿½ï¿½Ç°×´Ì¬"), ReadOnly, SerializeField]
     private TBState state;
     public TBState CurrentState
     {
@@ -36,25 +36,25 @@ public class TBController : MonoBehaviour
         get { return flashState; }
     }
     /// <summary>
-    /// ÎªËùÓÐ»ØËÝÆ÷Ô¤ÉèÈÝÁ¿,Äã¿ÉÒÔ²âÊÔÄÚ´æÕ¼ÓÃºóÌá¸ßÉÏÏÞ£¬ÒòÎª¶¯Ì¬À©ÈÝ»á1.5±¶Ôö¼ÓÈÝÁ¿´øÀ´ÀË·Ñ,¾¡Á¿²»ÒªÔÚÓÎÏ·Ê±À©ÈÝ
+    /// Îªï¿½ï¿½ï¿½Ð»ï¿½ï¿½ï¿½ï¿½ï¿½Ô¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½Ô²ï¿½ï¿½ï¿½ï¿½Ú´ï¿½Õ¼ï¿½Ãºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Þ£ï¿½ï¿½ï¿½Îªï¿½ï¿½Ì¬ï¿½ï¿½ï¿½Ý»ï¿½1.5ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë·ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½Ï·Ê±ï¿½ï¿½ï¿½ï¿½
     /// </summary>
-    [SerializeField, LabelText("¼ÇÂ¼ÉÏÏÞ"), DisableInPlayMode]
+    [SerializeField, LabelText("ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½"), DisableInPlayMode]
     private int capacity = 3000;
     public int Capacity
     {
         get { return capacity; }
     }
-    [SerializeField, LabelText("µ±Ç°¼ÇÂ¼Êý"), ProgressBar(0, "capacity"), ReadOnly]
+    [SerializeField, LabelText("ï¿½ï¿½Ç°ï¿½ï¿½Â¼ï¿½ï¿½"), ProgressBar(0, "capacity"), ReadOnly]
     private int currentCount;
     /// <summary>
-    /// ¼ÇÂ¼²½³¤,ÒòÎªÊ¹ÓÃUpdate¼ÇÂ¼»áÓÐ¸ü´óÎó²î£¬½¨ÒéÊ¹ÓÃFixedUpdate¼ÇÂ¼Êý¾Ý£¬FixedDeltaTimeÄ¬ÈÏÎª0.02f
+    /// ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ÎªÊ¹ï¿½ï¿½Updateï¿½ï¿½Â¼ï¿½ï¿½ï¿½Ð¸ï¿½ï¿½ï¿½ï¿½ï¿½î£¬ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½FixedUpdateï¿½ï¿½Â¼ï¿½ï¿½ï¿½Ý£ï¿½FixedDeltaTimeÄ¬ï¿½ï¿½Îª0.02f
     /// </summary>
-    [SerializeField, LabelText("¼ÇÂ¼²½³¤"), Range(0.01f, 0.2f), Tooltip("Ã¿¶àÉÙÃë¼ÇÂ¼Ò»´Î"), DisableIf("state", TBState.Record)]
+    [SerializeField, LabelText("ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½"), Range(0.01f, 0.2f), Tooltip("Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼Ò»ï¿½ï¿½"), DisableIf("state", TBState.Record)]
     private float recordStep = 0.02f;
-    [SerializeField, LabelText("»ØËÝ²½³¤"), Range(0.01f, 0.2f), Tooltip("Ã¿¶àÉÙÃë»ØËÝÒ»´Î"), DisableIf("state", TBState.RecallFast)]
+    [SerializeField, LabelText("ï¿½ï¿½ï¿½Ý²ï¿½ï¿½ï¿½"), Range(0.01f, 0.2f), Tooltip("Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½"), DisableIf("state", TBState.RecallFast)]
     private float recallStep = 0.02f;
     /// <summary>
-    /// µ±Ç°¼ÇÂ¼²½³¤
+    /// ï¿½ï¿½Ç°ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½
     /// </summary>
     /// <value></value>
     public float RecordStep
@@ -64,38 +64,38 @@ public class TBController : MonoBehaviour
     private float timer;
     public event Action OnRecordStartEvent;
     /// <summary>
-    /// »ØËÝ¿ªÊ¼ÊÂ¼þ
+    /// ï¿½ï¿½ï¿½Ý¿ï¿½Ê¼ï¿½Â¼ï¿½
     /// </summary>
     public event Action OnRecallStartEvent;
     /// <summary>
-    /// »ØËÝ½áÊøÊÂ¼þ
+    /// ï¿½ï¿½ï¿½Ý½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½
     /// </summary>
     public event Action OnRecallEndEvent;
     /// <summary>
-    /// ¼ÇÂ¼ÖÐÊÂ¼þ
+    /// ï¿½ï¿½Â¼ï¿½ï¿½ï¿½Â¼ï¿½
     /// </summary>
     public event Action OnRecordEvent;
     /// <summary>
-    /// »ØËÝÖÐÊÂ¼þ£¨Âý»ØËÝ£©
+    /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý£ï¿½
     /// </summary>
     public event Action OnRecallSlowEvent;
     /// <summary>
-    /// »ØËÝÖÐÊÂ¼þ£¨¿ì»ØËÝ£©
+    /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý£ï¿½
     /// </summary>
     public event Action OnRecallFastEvent;
     /// <summary>
-    /// ¼ÇÂ¼Êý±ä¸üÊÂ¼þ£¨ÊÊÓÃÓÚUI¸üÐÂ£©
+    /// ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½UIï¿½ï¿½ï¿½Â£ï¿½
     /// </summary>
     public event Action<float> OnStepChangeEvent;
     /// <summary>
-    /// ¿ØÖÆÆ÷×´Ì¬±ä¸üÊÂ¼þ£¨ÊÊÓÃÓÚ¶àÈËÓÎÏ·×´Ì¬Í¬²½£©
+    /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú¶ï¿½ï¿½ï¿½ï¿½ï¿½Ï·×´Ì¬Í¬ï¿½ï¿½ï¿½ï¿½
     /// </summary>
     public event Action<TBState> OnStateChangeEvent;
 
-    [LabelText("¹Ì¶¨¸üÐÂ"), SerializeField]
+    [LabelText("ï¿½Ì¶ï¿½ï¿½ï¿½ï¿½ï¿½"), SerializeField]
     private bool useFixedUpdate = true;
     /// <summary>
-    /// Ê¹ÓÃÎïÀí¸üÐÂFixedUpdateMode
+    /// Ê¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½FixedUpdateMode
     /// </summary>
     /// <value></value>
     public bool UseFixedUpdate
@@ -142,14 +142,15 @@ public class TBController : MonoBehaviour
     public GameObject ChooseOne()
     {
         GameObject obj = GetTBObject();
-        if(obj != null)
+        if(obj == null)
         {
-            TBStore timeStore = obj.GetComponent<TBStore>();
-            if (timeStore != null)
-            {
-                Debug.Log("get timestore");
-                timeStore.LockTimeStore(false);
-            }
+            return null;
+        }
+        TBStore timeStore = obj.GetComponent<TBStore>();
+        if (timeStore != null)
+        {
+            Debug.Log("get timestore");
+            timeStore.LockTimeStore(false);
         }
         RecordAll();
         return obj;
@@ -181,9 +182,9 @@ public class TBController : MonoBehaviour
         UpdateState(TBState.Choose);
     }
     /// <summary>
-    /// »ØËÝÆ÷¿ªÊ¼¼ÇÂ¼
+    /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½Â¼
     /// </summary>
-    [Button("¼ÇÂ¼"), HideInEditorMode, EnableIf("state", TBState.Choose)]
+    [Button("ï¿½ï¿½Â¼"), HideInEditorMode, EnableIf("state", TBState.Choose)]
     public void RecordAll()
     {
         timer = recordStep;
@@ -196,9 +197,9 @@ public class TBController : MonoBehaviour
 
     }
     /// <summary>
-    /// »ØËÝÆ÷¿ªÊ¼»ØËÝ
+    /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½
     /// </summary>
-    [Button("¿ì»ØËÝ"), HideInEditorMode, EnableIf("state", TBState.Record)]
+    [Button("ï¿½ï¿½ï¿½ï¿½ï¿½"), HideInEditorMode, EnableIf("state", TBState.Record)]
     public void RecallAllFast()
     {
         timer = 0;
@@ -210,7 +211,7 @@ public class TBController : MonoBehaviour
         }
         recallCount = currentCount;
     }
-    [Button("Âý»ØËÝ"), HideInEditorMode, EnableIf("state", TBState.Record)]
+    [Button("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"), HideInEditorMode, EnableIf("state", TBState.Record)]
     public void RecallAllSlow()
     {
         timer = 0;
@@ -223,9 +224,9 @@ public class TBController : MonoBehaviour
         recallCount = currentCount;
     }
     /// <summary>
-    /// Ç¿ÖÆ¹Ø±ÕËùÓÐ»ØËÝÆ÷
+    /// Ç¿ï¿½Æ¹Ø±ï¿½ï¿½ï¿½ï¿½Ð»ï¿½ï¿½ï¿½ï¿½ï¿½
     /// </summary>
-    public void ShutdownAll()
+    /*public void ShutdownAll()
     {
         state = TBState.Normal;
         currentCount = 0;
@@ -233,7 +234,7 @@ public class TBController : MonoBehaviour
         {
             store.ShutDown();
         }
-    }
+    }*/
     private void Update()
     {
         if (!useFixedUpdate)
@@ -259,7 +260,7 @@ public class TBController : MonoBehaviour
                 }
             case TBState.Record:
                 {
-                    if (currentCount >= capacity)//µ½´ïÉÏÏÞÖ±½Ó»ØËÝ
+                    if (currentCount >= capacity)//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½Ó»ï¿½ï¿½ï¿½
                     {
                         RecallAllSlow();
                         break;
@@ -269,14 +270,14 @@ public class TBController : MonoBehaviour
                     {
                         timer = 0;
                         currentCount += 1;
-                        OnRecordEvent?.Invoke();//µ÷ÓÃ¼ÇÂ¼Ê±¿Ì
+                        OnRecordEvent?.Invoke();//ï¿½ï¿½ï¿½Ã¼ï¿½Â¼Ê±ï¿½ï¿½
                         OnStepChangeEvent?.Invoke((float)currentCount / Capacity);
                     }
                     break;
                 }
             case TBState.RecallSlow:
                 {
-                    if (currentCount == 0)//»ØËÝ½áÊøµ÷ÓÃ»ØËÝ½áÊøÊÂ¼þ
+                    if (currentCount == 0)//ï¿½ï¿½ï¿½Ý½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½Ý½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½
                     {
                         OnRecallEndEvent?.Invoke();
                         UpdateState(TBState.Normal);
@@ -288,13 +289,13 @@ public class TBController : MonoBehaviour
                         timer = 0;
                         currentCount -= 1;
                         OnStepChangeEvent?.Invoke((float)currentCount / Capacity);
-                        OnRecallSlowEvent?.Invoke();//Î´½áÊøÔòµ÷ÓÃ»ØËÝÊ±¿Ì
+                        OnRecallSlowEvent?.Invoke();//Î´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
                     }
                     break;
                 }
             case TBState.RecallFast:
                 {
-                    if (currentCount == 0)//»ØËÝ½áÊøµ÷ÓÃ»ØËÝ½áÊøÊÂ¼þ
+                    if (currentCount == 0)//ï¿½ï¿½ï¿½Ý½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½Ý½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½
                     {
                         OnRecallEndEvent?.Invoke();
                         UpdateState(TBState.Normal);
@@ -306,7 +307,7 @@ public class TBController : MonoBehaviour
                         currentCount = 0;
                     }
                     OnStepChangeEvent?.Invoke((float)currentCount / Capacity);
-                    OnRecallFastEvent?.Invoke();//Î´½áÊøÔòµ÷ÓÃ»ØËÝÊ±¿Ì
+                    OnRecallFastEvent?.Invoke();//Î´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
                     break;
                 }
         }

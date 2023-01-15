@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class parallax : MonoBehaviour
 {
-    public Camera cam;
-    public Transform subject;
+    private Camera cam;
+    private Transform subject;
 
     Vector2 startPosition;
 
@@ -23,6 +23,8 @@ public class parallax : MonoBehaviour
     // Start is called before the first frame update
     public void Start()
     {
+        cam = GameObject.Find("Main Camera").GetComponent<Camera>();
+        subject = Player.Instance.transform;
         startPosition = transform.position;
         startZ = transform.position.z;
     }

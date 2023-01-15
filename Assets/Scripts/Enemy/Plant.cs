@@ -94,12 +94,4 @@ public class Plant : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Bullet")
-        {
-            EnemyDie();
-            Debug.Log($"BecauseBomb");
-        }
-    }
 }

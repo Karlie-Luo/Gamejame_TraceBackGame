@@ -8,6 +8,7 @@ TagManager:
   - Ground
   - Bullet
   - Bomb
+  - skulling
   layers:
   - Default
   - TransparentFX

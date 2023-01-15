@@ -147,8 +147,10 @@ MonoBehaviour:
   bullet: {fileID: 593467913941197095, guid: 8dec8985f8e446d45bc978c8f14c4485, type: 3}
   left: 0
   shootInterval: 1
-  alertDistance: 10
+  alertDistance: 20
   dieSpeed: 0
+  dieAudio: {fileID: 4939499516560699874}
+  shootAudio: {fileID: -2139994201586204649}
 --- !u!82 &4939499516560699874
 AudioSource:
   m_ObjectHideFlags: 0
@@ -160,7 +162,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 90a455869ff6c314c9133529896f5177, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -256,7 +258,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: cf9689bf7ff7e234ba01bc6a14d6b876, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

@@ -94,10 +94,6 @@ public class Turtle : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Quaternion quaternion = Quaternion.Euler(0, 0, 0);
-        if (collision.gameObject.tag == "Player")
-        {
-            EnemyDie();
-        }
         if(collision.gameObject.tag != "Ground" && collision.gameObject.tag != "Player" && collision.gameObject.tag != "Bullet") 
         {
             dir *= -1;
