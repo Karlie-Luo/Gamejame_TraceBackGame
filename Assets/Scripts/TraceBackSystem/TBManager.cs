@@ -27,7 +27,7 @@ public class TBManager : MonoBehaviour
 
     public GameObject flashLight;
     public GameObject recordObj;
-    public AbilityState abilityState = new AbilityState(false, false, false);
+    public AbilityState abilityState = new AbilityState(true, true, true);
 
     public static TBManager instance;
     public static TBManager Instance
@@ -83,6 +83,7 @@ public class TBManager : MonoBehaviour
                 Debug.Log("normal to choose");
                 TBController.Instance.NormalToChoose();
                 Player.Instance.TimeStopChecks();
+                ShowObjCanBeChosen();
                 seq.Restart();
             }
             else if (TBController.Instance.CurrentState == TBController.TBState.Choose)
@@ -170,6 +171,7 @@ public class TBManager : MonoBehaviour
     private void BackToNormal()
     {
         //Debug.Log("Manager back to normal");
+        ShowOffObjCanBeChosen();
         TBController.Instance.BackToNormal();
     }
     private void BackToNormal_Flash()
@@ -238,4 +240,18 @@ public class TBManager : MonoBehaviour
         RestartFlashUpdate();
         coldTimer.Restart();
     }
+
+    public void ShowObjCanBeChosen()
+    {
+        GameObject obj = GameObject.Find("TBStoreList");
+        TBStoreList tBStoreList = obj.GetComponent<TBStoreList>();
+        tBStoreList.CanBeChosen();
+    }
+    public void ShowOffObjCanBeChosen()
+    {
+        GameObject obj = GameObject.Find("TBStoreList");
+        TBStoreList tBStoreList = obj.GetComponent<TBStoreList>();
+        tBStoreList.BackToNormal();
+    }
+
 }
