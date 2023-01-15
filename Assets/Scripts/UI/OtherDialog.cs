@@ -69,10 +69,22 @@ public class OtherDialog : MonoBehaviour
         text.text = StoryDialog_1[storyCount_1];
     }
 
+    public void ChangeStoryDialog_2()
+    {
+        if (storyCount_2 >= StoryDialog_2.Count - 1)
+        {
+            this.gameObject.SetActive(false);
+            return;
+        }
+        storyCount_2 ++;
+        text.text = StoryDialog_2[storyCount_2];
+    }
+
     public void ChangeAbilityDialog_1()
     {
         if (abilityCount_1 >= AbilityDialog_1.Count)
         {
+            TBManager.instance.ActiveAbility(0);
             this.gameObject.SetActive(false);
             return;
         }
@@ -84,6 +96,7 @@ public class OtherDialog : MonoBehaviour
     {
         if (abilityCount_2 >= AbilityDialog_2.Count)
         {
+            TBManager.instance.ActiveAbility(1);
             this.gameObject.SetActive(false);
             return;
         }
@@ -95,6 +108,7 @@ public class OtherDialog : MonoBehaviour
     {
         if (abilityCount_3 >= AbilityDialog_3.Count)
         {
+            TBManager.instance.ActiveAbility(2);
             this.gameObject.SetActive(false);
             return;
         }
