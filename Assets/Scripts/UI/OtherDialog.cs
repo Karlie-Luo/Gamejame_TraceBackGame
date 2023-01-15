@@ -82,7 +82,7 @@ public class OtherDialog : MonoBehaviour
 
     public void ChangeAbilityDialog_1()
     {
-        if (abilityCount_1 >= AbilityDialog_1.Count)
+        if (abilityCount_1 >= AbilityDialog_1.Count - 1)
         {
             TBManager.instance.ActiveAbility(0);
             this.gameObject.SetActive(false);
@@ -94,7 +94,7 @@ public class OtherDialog : MonoBehaviour
 
     public void ChangeAbilityDialog_2()
     {
-        if (abilityCount_2 >= AbilityDialog_2.Count)
+        if (abilityCount_2 >= AbilityDialog_2.Count - 1)
         {
             TBManager.instance.ActiveAbility(1);
             this.gameObject.SetActive(false);
@@ -106,7 +106,7 @@ public class OtherDialog : MonoBehaviour
 
     public void ChangeAbilityDialog_3()
     {
-        if (abilityCount_3 >= AbilityDialog_3.Count)
+        if (abilityCount_3 >= AbilityDialog_3.Count - 1)
         {
             TBManager.instance.ActiveAbility(2);
             this.gameObject.SetActive(false);
