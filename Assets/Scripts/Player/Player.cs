@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
     public GameObject sceneFadeInOut;
     public GameObject timestopsphere;
 
-    public SpriteRenderer renderer;
+    private SpriteRenderer renderer;
     private float maxBlinkTime = 0.5f;
     private float blinkTime = 0f;
     public bool playerDeath = false;
@@ -72,6 +72,7 @@ public class Player : MonoBehaviour
         animt = GetComponent<Animator>();
         //audio = GetComponent<AudioSource>();
         walkAudio = GetComponent<AudioSource>();
+        renderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -101,7 +102,7 @@ public class Player : MonoBehaviour
         {
   
             timeStopTime += Time.unscaledDeltaTime;
-            if (timeStopTime >= 2.0f)
+            if (timeStopTime >= 2.5f)
             {
 
                 Time.timeScale = 1;
@@ -133,7 +134,7 @@ public class Player : MonoBehaviour
 
     public void TimeStopChecks()
     {
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
         timestopsphere.gameObject.SetActive(true);
         timestopsphere.gameObject.transform.position = this.gameObject.transform.position + new Vector3(0, 0, 3);
         isTimeStopStart = true;
@@ -186,20 +187,9 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == 6)
+        if (collision.gameObject.layer == 6 || collision.gameObject.layer == 3)
         {
-            isGround = true;
-            animt.SetBool("isGround", true);
-        }
-        else if (collision.gameObject.layer == 3)
-        {
-            Vector2 v = collision.ClosestPoint(this.transform.position);
-            if (v.y < transform.position.y && Mathf.Abs(v.x - transform.position.x) < 0.1)
-            {
-                isGround = true;
-                animt.SetBool("isGround", true);
-
-            }
+            ColliderTest(true, collision);
         }
         if (isJump)
         {
@@ -208,21 +198,11 @@ public class Player : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == 6)
+        if (collision.gameObject.layer == 6||collision.gameObject.layer ==3)
         {
-            isGround = false;
-            animt.SetBool("isGround", false);
+            ColliderTest(false, collision);
         }
-        else if (collision.gameObject.layer == 3)
-        {
-            Vector2 v = collision.ClosestPoint(this.transform.position);
-            if (v.y < transform.position.y && Mathf.Abs(v.x-transform.position.x)<0.1)
-            {
-                isGround = false;
-                animt.SetBool("isGround", false);
 
-            }
-        }
     }
 
     public TransformStep GetTransfomStep()
@@ -266,4 +246,15 @@ public class Player : MonoBehaviour
             Rebirth();
         }
     }
+
+    private void ColliderTest(bool Ground,Collider2D collision)
+    {
+        Vector2 v = collision.ClosestPoint(this.transform.position);
+        if (v.y < transform.position.y && Mathf.Abs(v.x - transform.position.x) < 0.1)
+        {
+            isGround = Ground;
+            animt.SetBool("isGround", Ground);
+        }
+    }
 }
+

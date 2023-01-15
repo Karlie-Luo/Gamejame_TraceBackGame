@@ -4,18 +4,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Kurisu.TimeControl;
+using UnityEngine.EventSystems;
 
 public class TBManager : MonoBehaviour
 {
     public struct AbilityState
     {
-        public bool fastRecall;
         public bool slowRecall;
+        public bool fastRecall;
         public bool flash;
         public AbilityState(bool value1,bool value2, bool value3)
         {
-            fastRecall = value1;
-            slowRecall = value2;
+            slowRecall = value1;
+            fastRecall = value2;
             flash = value3;
         }
     }
@@ -26,7 +27,7 @@ public class TBManager : MonoBehaviour
 
     public GameObject flashLight;
     public GameObject recordObj;
-    public AbilityState abilityState = new AbilityState(true, true, true);
+    public AbilityState abilityState = new AbilityState(false, false, false);
 
     public static TBManager instance;
     public static TBManager Instance
@@ -74,7 +75,8 @@ public class TBManager : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && (abilityState.fastRecall == true || abilityState.slowRecall == true))
+        if (Input.GetMouseButtonDown(0) && (abilityState.fastRecall == true || abilityState.slowRecall == true)
+            && EventSystem.current.IsPointerOverGameObject() == false)
         {
             if (TBController.Instance.CurrentState == TBController.TBState.Normal)
             {
@@ -85,13 +87,17 @@ public class TBManager : MonoBehaviour
             }
             else if (TBController.Instance.CurrentState == TBController.TBState.Choose)
             {
+                GameObject obj = TBController.Instance.ChooseOne();
+                if(obj == null)
+                {
+                    return;
+                }
+                recordObj.transform.position = obj.transform.position;
+                recordObj.SetActive(true);
                 if (seq.IsPlaying())
                 {
                     seq.Pause<Sequence>();
                 }
-                Debug.Log("record Pos");
-                recordObj.SetActive(true);
-                recordObj.transform.position = TBController.Instance.ChooseOne().transform.position;
             }
         }
         else if (Input.GetKeyDown(KeyCode.LeftControl) && abilityState.slowRecall == true)
@@ -125,12 +131,6 @@ public class TBManager : MonoBehaviour
                 //Player.Instance.Flash(step);
             }
         }
-        else if(Input.GetKeyDown(KeyCode.Tab))
-        {
-            Player.Instance.Rebirth();
-            //Player.Instance.transform.position = flashLight.transform.position;
-            //Player.Instance.transform.rotation = flashLight.transform.rotation;
-        }
     }
     private void FixedUpdate()
     {
@@ -141,7 +141,7 @@ public class TBManager : MonoBehaviour
         }
         else
         {
-            if(flashLight.activeSelf == false)
+            if(flashLight.activeSelf == false && abilityState.flash == true)
             {
                 flashLight.SetActive(true);
             }
@@ -161,7 +161,7 @@ public class TBManager : MonoBehaviour
     private void InitColdTimer()
     {
         Debug.Log("Init coldTimer");
-        coldTimer.AppendInterval(5);
+        coldTimer.AppendInterval(4);
         coldTimer.AppendCallback(BackToNormal_Flash);
         coldTimer.SetAutoKill(false);
         coldTimer.SetUpdate(true);
@@ -201,10 +201,10 @@ public class TBManager : MonoBehaviour
         switch (num)
         {
             case 0:
-                abilityState.fastRecall = true;
+                abilityState.slowRecall = true;
                 break;
             case 1:
-                abilityState.slowRecall = true;
+                abilityState.fastRecall = true;
                 break;
             case 2:
                 abilityState.flash = true;
@@ -212,6 +212,22 @@ public class TBManager : MonoBehaviour
             default:
                 Debug.Log("dont have the ability!");
                 break;
+        }
+    }
+
+    public bool GetActiveAbility(int num)
+    {
+        switch (num)
+        {
+            case 0:
+                return abilityState.slowRecall;
+            case 1:
+                return abilityState.fastRecall;
+            case 2:
+                return abilityState.flash;
+            default:
+                Debug.Log("dont have the ability!");
+                return false;
         }
     }
 
