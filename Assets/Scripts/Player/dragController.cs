@@ -12,10 +12,10 @@ public class dragController : MonoBehaviour
     // Update is called once per frame
     GameObject dragObj = null;
     private Vector3 distance;
+    private int count = 0;
 
     void Update()
     {
-
             if (Input.GetKeyDown(KeyCode.J))
             {
                 dragPressed = true;
@@ -30,8 +30,10 @@ public class dragController : MonoBehaviour
     {
         if (dragObj != null && dragPressed&&!Player.instance.cannotDrag)
         {
-            Debug.Log("hahaha");
+            Debug.Log("玩家位置" + this.transform.position.x+" distance"+distance.x);
+            
             dragObj.transform.position = this.transform.position + distance;
+            Debug.Log("物体位置"+dragObj.transform.position.x);
             if (Player.instance.rb.velocity.x * distance.x < 0)
             {
                 Player.instance.speed = decreasedDragSpeed;
@@ -51,19 +53,30 @@ public class dragController : MonoBehaviour
     {
         if(collision.gameObject.layer==3)
         {
-            if (dragPressed == true&&Player.instance.isGround)
+            if (dragPressed == true&&Player.instance.isGround&&count == 0)
             {
+                count++;
                 dragObj = collision.gameObject;
                 distance = collision.gameObject.transform.position - this.gameObject.transform.position;
                 Debug.Log(dragObj.name);
+                Debug.Log("dddd");
             }
-            else
+            else if(!dragPressed||!Player.instance.isGround)
             {
                 //collision.gameObject.transform.parent = null;
                 dragObj = null;
                 distance = Vector3.zero;
+                count = 0;
             }
         }
     }
+    //private void OnTriggerExit2D(Collider2D collision)
+    //{
+    //    if (collision.gameObject.layer == 3)
+    //    {
+    //        dragObj = null;
+    //        distance = Vector3.zero;
+    //    }
+    //}
 
 }
