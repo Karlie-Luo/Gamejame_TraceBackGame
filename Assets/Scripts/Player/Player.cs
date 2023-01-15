@@ -96,6 +96,7 @@ public class Player : MonoBehaviour
             if (Input.GetKeyUp(KeyCode.Space))
             {
                 jumpContinue = false;
+                jumpPressed = false;
             }
         }
         else 
@@ -268,8 +269,8 @@ public class Player : MonoBehaviour
 
     private void ColliderTest(bool Ground,Collider2D collision,bool Box)
     {
-        Vector2 v = collision.ClosestPoint(this.transform.position);
-        if (v.y < transform.position.y+2 && Mathf.Abs(v.x - transform.position.x) < 1)
+        Vector2 v = collision.ClosestPoint(this.transform.position-new Vector3(0,2.5f,0));
+        if (v.y <= transform.position.y+0 && Mathf.Abs(v.x - transform.position.x) < 0.1)
         {
             isGround = Ground;
             isBox = Box;
