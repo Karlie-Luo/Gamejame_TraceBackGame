@@ -125,7 +125,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.000000014901161, y: -0.047414802}
+  m_Offset: {x: -0.000000014901161, y: -0.051314183}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -136,7 +136,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.21218506, y: 0.2121851}
+  m_Size: {x: 0.21218506, y: 0.21998395}
   m_EdgeRadius: 0
 --- !u!114 &8835099754806837588
 MonoBehaviour:
@@ -164,12 +164,12 @@ MonoBehaviour:
     m_Bits: 64
   isGround: 0
   isJump: 0
+  isBox: 0
   cannotDrag: 0
   jumpCount: 0
   jumpDownForce: 0
   sceneFadeInOut: {fileID: 0}
   timestopsphere: {fileID: 7221192996158559094}
-  renderer: {fileID: 0}
   playerDeath: 0
   afterBlink: 0
 --- !u!95 &2625359951693889149
@@ -428,7 +428,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.00559777, y: -0.06048189}
+  m_Offset: {x: 0.053714976, y: -0.060481876}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -439,7 +439,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.38535762, y: 0.21947575}
+  m_Size: {x: 0.50398314, y: 0.21947572}
   m_EdgeRadius: 0
 --- !u!114 &2625359951030406750
 MonoBehaviour:
