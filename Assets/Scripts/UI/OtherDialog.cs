@@ -54,7 +54,7 @@ public class OtherDialog : MonoBehaviour
         AbilityDialog_2.Add("天下武功，唯快不破。试试用快回溯击败敌人吧！");
 
         AbilityDialog_3.Add("恭喜你获得了瞬闪的能力！");
-        AbilityDialog_3.Add("每4秒可以使用一次瞬闪能力。瞬闪能够将你送回到五秒之前的位置。");
+        AbilityDialog_3.Add("每四秒可以使用一次瞬闪能力。瞬闪能够将你送回到三秒之前的位置。");
         AbilityDialog_3.Add("利用这个能力，可以逃离危险，或者巧妙地打败敌人。");
         AbilityDialog_3.Add("尝试按下鼠标右键，使用瞬闪从深坑中逃出吧！");
     }
