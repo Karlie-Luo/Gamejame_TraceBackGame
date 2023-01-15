@@ -27,7 +27,7 @@ public class TBManager : MonoBehaviour
 
     public GameObject flashLight;
     public GameObject recordObj;
-    public AbilityState abilityState = new AbilityState(false, false, false);
+    public AbilityState abilityState = new AbilityState(true, true, true);
 
     public static TBManager instance;
     public static TBManager Instance
