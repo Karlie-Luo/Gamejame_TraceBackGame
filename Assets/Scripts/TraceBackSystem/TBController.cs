@@ -21,10 +21,10 @@ public class TBController : MonoBehaviour
         Normal,
         Flash
     }
-    [LabelText("�������б�"), SerializeField]
+    [LabelText("回溯器列表"), SerializeField]
     private List<TBStore> stores = new List<TBStore>();
     private TBStore playerStore;
-    [LabelText("��ǰ״̬"), ReadOnly, SerializeField]
+    [LabelText("当前状态"), ReadOnly, SerializeField]
     private TBState state;
     public TBState CurrentState
     {
@@ -36,25 +36,25 @@ public class TBController : MonoBehaviour
         get { return flashState; }
     }
     /// <summary>
-    /// Ϊ���л�����Ԥ������,����Բ����ڴ�ռ�ú�������ޣ���Ϊ��̬���ݻ�1.5���������������˷�,������Ҫ����Ϸʱ����
+    /// 为所有回溯器预设容量,你可以测试内存占用后提高上限，因为动态扩容会1.5倍增加容量带来浪费,尽量不要在游戏时扩容
     /// </summary>
-    [SerializeField, LabelText("��¼����"), DisableInPlayMode]
+    [SerializeField, LabelText("记录上限"), DisableInPlayMode]
     private int capacity = 3000;
     public int Capacity
     {
         get { return capacity; }
     }
-    [SerializeField, LabelText("��ǰ��¼��"), ProgressBar(0, "capacity"), ReadOnly]
+    [SerializeField, LabelText("当前记录数"), ProgressBar(0, "capacity"), ReadOnly]
     private int currentCount;
     /// <summary>
-    /// ��¼����,��Ϊʹ��Update��¼���и���������ʹ��FixedUpdate��¼���ݣ�FixedDeltaTimeĬ��Ϊ0.02f
+    /// 记录步长,因为使用Update记录会有更大误差，建议使用FixedUpdate记录数据，FixedDeltaTime默认为0.02f
     /// </summary>
-    [SerializeField, LabelText("��¼����"), Range(0.01f, 0.2f), Tooltip("ÿ�������¼һ��"), DisableIf("state", TBState.Record)]
+    [SerializeField, LabelText("记录步长"), Range(0.01f, 0.2f), Tooltip("每多少秒记录一次"), DisableIf("state", TBState.Record)]
     private float recordStep = 0.02f;
-    [SerializeField, LabelText("���ݲ���"), Range(0.01f, 0.2f), Tooltip("ÿ���������һ��"), DisableIf("state", TBState.RecallFast)]
+    [SerializeField, LabelText("回溯步长"), Range(0.01f, 0.2f), Tooltip("每多少秒回溯一次"), DisableIf("state", TBState.RecallFast)]
     private float recallStep = 0.02f;
     /// <summary>
-    /// ��ǰ��¼����
+    /// 当前记录步长
     /// </summary>
     /// <value></value>
     public float RecordStep
@@ -64,38 +64,38 @@ public class TBController : MonoBehaviour
     private float timer;
     public event Action OnRecordStartEvent;
     /// <summary>
-    /// ���ݿ�ʼ�¼�
+    /// 回溯开始事件
     /// </summary>
     public event Action OnRecallStartEvent;
     /// <summary>
-    /// ���ݽ����¼�
+    ///  回溯结束事件
     /// </summary>
     public event Action OnRecallEndEvent;
     /// <summary>
-    /// ��¼���¼�
+    /// 记录中事件
     /// </summary>
     public event Action OnRecordEvent;
     /// <summary>
-    /// �������¼��������ݣ�
+    /// 回溯中事件（慢回溯）
     /// </summary>
     public event Action OnRecallSlowEvent;
     /// <summary>
-    /// �������¼�������ݣ�
+    /// 回溯中事件（快回溯）
     /// </summary>
     public event Action OnRecallFastEvent;
     /// <summary>
-    /// ��¼������¼���������UI���£�
+    /// 记录数变更事件（适用于UI更新）
     /// </summary>
     public event Action<float> OnStepChangeEvent;
     /// <summary>
-    /// ������״̬����¼��������ڶ�����Ϸ״̬ͬ����
+    /// 控制器状态变更事件（适用于多人游戏状态同步）
     /// </summary>
     public event Action<TBState> OnStateChangeEvent;
 
-    [LabelText("�̶�����"), SerializeField]
+    [LabelText("固定更新"), SerializeField]
     private bool useFixedUpdate = true;
     /// <summary>
-    /// ʹ���������FixedUpdateMode
+    /// 使用物理更新FixedUpdateMode
     /// </summary>
     /// <value></value>
     public bool UseFixedUpdate
@@ -182,9 +182,9 @@ public class TBController : MonoBehaviour
         UpdateState(TBState.Choose);
     }
     /// <summary>
-    /// ��������ʼ��¼
+    /// 回溯器开始记录
     /// </summary>
-    [Button("��¼"), HideInEditorMode, EnableIf("state", TBState.Choose)]
+    [Button("记录"), HideInEditorMode, EnableIf("state", TBState.Choose)]
     public void RecordAll()
     {
         timer = recordStep;
@@ -197,9 +197,9 @@ public class TBController : MonoBehaviour
 
     }
     /// <summary>
-    /// ��������ʼ����
+    /// 回溯器开始回溯
     /// </summary>
-    [Button("�����"), HideInEditorMode, EnableIf("state", TBState.Record)]
+    [Button("快回溯"), HideInEditorMode, EnableIf("state", TBState.Record)]
     public void RecallAllFast()
     {
         timer = 0;
@@ -211,7 +211,7 @@ public class TBController : MonoBehaviour
         }
         recallCount = currentCount;
     }
-    [Button("������"), HideInEditorMode, EnableIf("state", TBState.Record)]
+    [Button("慢回溯"), HideInEditorMode, EnableIf("state", TBState.Record)]
     public void RecallAllSlow()
     {
         timer = 0;
@@ -224,7 +224,7 @@ public class TBController : MonoBehaviour
         recallCount = currentCount;
     }
     /// <summary>
-    /// ǿ�ƹر����л�����
+    /// 强制关闭所有回溯器
     /// </summary>
     /*public void ShutdownAll()
     {
