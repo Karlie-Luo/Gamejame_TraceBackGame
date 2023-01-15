@@ -146,7 +146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 3518175509560601264, guid: 4caf8203daee55843a1e5c9eb5b91ade, type: 3}
   shootInterval: 5
-  alertDistance: 2
+  alertDistance: 10
   dieSpeed: 0
   dieAudio: {fileID: 957320238152800871}
   shootAudio: {fileID: 2037911354925842905}
