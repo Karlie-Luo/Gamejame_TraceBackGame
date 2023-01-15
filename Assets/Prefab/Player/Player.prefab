@@ -158,8 +158,8 @@ MonoBehaviour:
   walkAudio: {fileID: 1744508074}
   jumpAudio: {fileID: 1744508075}
   Zawaluduo: {fileID: 7417528136348218222}
-  jumpForce: 10
-  speed: 10
+  jumpForce: 8
+  speed: 7
   groundCheck: {fileID: 2625359950801429488}
   ground:
     serializedVersion: 2
@@ -169,7 +169,7 @@ MonoBehaviour:
   isBox: 0
   cannotDrag: 0
   jumpCount: 0
-  jumpDownForce: 0
+  jumpDownForce: 100
   sceneFadeInOut: {fileID: 0}
   timestopsphere: {fileID: 7221192996158559094}
   playerDeath: 0
