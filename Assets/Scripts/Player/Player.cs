@@ -77,7 +77,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(isGround);
+        //Debug.Log(isGround);
         if(playerDeath)
         {
             Debug.Log("doblink");
@@ -207,6 +207,12 @@ public class Player : MonoBehaviour
         if (isJump)
         {
             rb.velocity = new Vector2(0, rb.velocity.y);
+        }
+        if(collision.gameObject.tag == "Bullet")
+        {
+            Rebirth();
+            Destroy(collision);
+            Destroy(collision.gameObject);
         }
     }
 

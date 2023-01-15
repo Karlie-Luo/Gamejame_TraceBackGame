@@ -24,14 +24,6 @@ public class PlantBullet : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            Debug.Log($"Hit");
-        }
-        Destroy(gameObject);
-    }
+    }   
 
 }

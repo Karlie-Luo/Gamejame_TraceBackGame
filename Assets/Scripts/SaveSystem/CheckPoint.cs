@@ -9,7 +9,7 @@ public class CheckPoint : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Player.Instance.transform.position = this.transform.position;
     }
 
     // Update is called once per frame
