@@ -186,20 +186,9 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == 6)
+        if (collision.gameObject.layer == 6 || collision.gameObject.layer == 3)
         {
-            isGround = true;
-            animt.SetBool("isGround", true);
-        }
-        else if (collision.gameObject.layer == 3)
-        {
-            Vector2 v = collision.ClosestPoint(this.transform.position);
-            if (v.y < transform.position.y && Mathf.Abs(v.x - transform.position.x) < 0.1)
-            {
-                isGround = true;
-                animt.SetBool("isGround", true);
-
-            }
+            ColliderTest(true, collision);
         }
         if (isJump)
         {
@@ -208,21 +197,11 @@ public class Player : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == 6)
+        if (collision.gameObject.layer == 6||collision.gameObject.layer ==3)
         {
-            isGround = false;
-            animt.SetBool("isGround", false);
+            ColliderTest(false, collision);
         }
-        else if (collision.gameObject.layer == 3)
-        {
-            Vector2 v = collision.ClosestPoint(this.transform.position);
-            if (v.y < transform.position.y && Mathf.Abs(v.x-transform.position.x)<0.1)
-            {
-                isGround = false;
-                animt.SetBool("isGround", false);
 
-            }
-        }
     }
 
     public TransformStep GetTransfomStep()
@@ -266,4 +245,15 @@ public class Player : MonoBehaviour
             Rebirth();
         }
     }
+
+    private void ColliderTest(bool Ground,Collider2D collision)
+    {
+        Vector2 v = collision.ClosestPoint(this.transform.position);
+        if (v.y < transform.position.y && Mathf.Abs(v.x - transform.position.x) < 0.1)
+        {
+            isGround = Ground;
+            animt.SetBool("isGround", Ground);
+        }
+    }
 }
+
