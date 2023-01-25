@@ -140,10 +140,10 @@ public class Player : MonoBehaviour
     public void TimeStopChecks()
     {
         //Time.timeScale = 0;
+        Zawaluduo.Play();
         timestopsphere.gameObject.SetActive(true);
         timestopsphere.gameObject.transform.position = this.gameObject.transform.position + new Vector3(0, 0, 3);
         isTimeStopStart = true;
-        Zawaluduo.Play();
     }
     void GroundMove()
     {
@@ -192,7 +192,7 @@ public class Player : MonoBehaviour
         animt.SetFloat("jumpFall", rb.velocity.y);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.layer == 6 || collision.gameObject.layer == 3)
         {
@@ -216,7 +216,6 @@ public class Player : MonoBehaviour
             Destroy(collision.gameObject);
         }
     }
-
 
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -276,8 +275,9 @@ public class Player : MonoBehaviour
 
     private void ColliderTest(bool Ground,Collider2D collision,bool Box)
     {
-        Vector2 v = collision.ClosestPoint(this.transform.position-new Vector3(0,2.5f,0));
-        if (v.y <= transform.position.y+0 && Mathf.Abs(v.x - transform.position.x) < 0.1)
+        Vector2 v = collision.ClosestPoint(this.transform.position);
+        //Debug.Log("v.y:" + v.y + "transy:" + transform.position.y + "v.x" + v.x + "transx" + transform.position.x);
+        if (Mathf.Atan(v.y-transform.position.y)/(v.x-transform.position.x)>2||(v.y<transform.position.y)&&Mathf.Abs(v.x-transform.position.x)<0.1)
         {
             isGround = Ground;
             isBox = Box;

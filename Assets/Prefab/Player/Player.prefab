@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2625359951693889149}
   - component: {fileID: 1744508074}
   - component: {fileID: 1744508075}
-  - component: {fileID: 7615377222736888020}
+  - component: {fileID: 7417528136348218222}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -157,9 +157,9 @@ MonoBehaviour:
   animt: {fileID: 2625359951693889149}
   walkAudio: {fileID: 1744508074}
   jumpAudio: {fileID: 1744508075}
-  Zawaluduo: {fileID: 7615377222736888020}
-  jumpForce: 10
-  speed: 10
+  Zawaluduo: {fileID: 7417528136348218222}
+  jumpForce: 8
+  speed: 7
   groundCheck: {fileID: 2625359950801429488}
   ground:
     serializedVersion: 2
@@ -171,7 +171,7 @@ MonoBehaviour:
   jumpCount: 0
   jumpDownForce: 0
   sceneFadeInOut: {fileID: 0}
-  timestopsphere: {fileID: 0}
+  timestopsphere: {fileID: 7221192996158559094}
   playerDeath: 0
   afterBlink: 0
 --- !u!95 &2625359951693889149
@@ -385,7 +385,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!82 &7615377222736888020
+--- !u!82 &7417528136348218222
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -720,6 +720,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a60fdb4c2ca36746b9bed6dab3cecae, type: 3}
+--- !u!1 &7221192996158559094 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4608559898019199303, guid: 3a60fdb4c2ca36746b9bed6dab3cecae, type: 3}
+  m_PrefabInstance: {fileID: 6611900024070253105}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1974460578893181596 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4657990185716947117, guid: 3a60fdb4c2ca36746b9bed6dab3cecae, type: 3}
